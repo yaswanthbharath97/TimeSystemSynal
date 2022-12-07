@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="first_name">First name</string>
+    <string name="Reveille">Reveille</string>
+    <string name="phone_number_email_or_username">Phone number,email or Username</string>
+    <string name="password">Password</string>
+    <string name="Phone_number">Phone number</string>
+    <string name="login">LOG-IN</string>
+</resources>
