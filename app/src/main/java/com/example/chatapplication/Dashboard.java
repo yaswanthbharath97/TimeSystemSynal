@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.chatapplication.databinding.DashboardBinding;
 import com.google.android.material.tabs.TabLayout;
@@ -12,7 +13,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.Objects;
 
-public class Dashboard extends AppCompatActivity {
+public final class Dashboard extends AppCompatActivity {
 
 
     private  String[] tabTitles=new String[]{"Chats","Groups"};
@@ -20,6 +21,7 @@ public class Dashboard extends AppCompatActivity {
      DashboardBinding binding;
     TabLayout tabLayout1;
     FragmentAdapter pagerAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

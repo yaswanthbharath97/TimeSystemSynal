@@ -24,7 +24,8 @@
             app:tabMaxWidth="0dp"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/tab_unselected">
+            app:tabTextColor="@color/tab_unselected"
+            tools:ignore="MissingClass">
 
         </com.google.android.material.tabs.TabLayout>
 
