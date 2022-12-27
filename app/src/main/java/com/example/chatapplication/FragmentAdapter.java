@@ -7,7 +7,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class FragmentAdapter extends FragmentStateAdapter {
-    private  String[] tabTitles=new String[]{"Chats","Groups"};
+    private final String[] tabTitles=new String[]{"Chats","Groups"};
 
     public FragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
@@ -19,8 +19,10 @@ public class FragmentAdapter extends FragmentStateAdapter {
 
     @NonNull
     @Override
-    public Fragment createFragment(int position) {
-        switch (position) {
+    public Fragment createFragment(int position)
+    {
+        switch (position)
+        {
 
             case 0:
                 return new ChatFragment();
@@ -35,6 +37,7 @@ public class FragmentAdapter extends FragmentStateAdapter {
     @Override
     public int getItemCount()
     {
+
         return tabTitles.length;
     }
 }

@@ -29,21 +29,16 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="40dp"
-
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/person"
+                    android:drawablePadding="10dp"
                     android:hint="@string/Username"
                     android:inputType="text"
-                    android:drawablePadding="10dp"
-                    android:textColorHint="#8a000000"
-                    android:drawableStart="@drawable/person"
-
-                    />
-
-
+                    android:textColorHint="#757575" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -79,7 +74,6 @@
                 android:layout_marginEnd="40dp"
                 app:hintEnabled="false"
                 app:boxBackgroundColor="@color/white"
-
             >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -102,7 +96,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="40dp"
               >
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -111,7 +104,7 @@
                     android:drawableStart="@drawable/email"
                     android:textColorHint="#8a000000"
                     android:hint="@string/email_id"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/login"

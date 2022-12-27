@@ -16,10 +16,10 @@ import java.util.Objects;
 public final class Dashboard extends AppCompatActivity {
 
 
-    private  String[] tabTitles=new String[]{"Chats","Groups"};
+    private final String[] tabTitles=new String[]{"Chats","Groups"};
 
-     DashboardBinding binding;
-    TabLayout tabLayout1;
+    DashboardBinding binding;
+
     FragmentAdapter pagerAdapter;
 
     @Override
