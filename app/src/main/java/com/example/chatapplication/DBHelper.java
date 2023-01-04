@@ -27,7 +27,8 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // this method is used to insert values in table,database
-    public Boolean insertData(String username,String password,String phonenumber,String email) {
+    public Boolean insertData(String username,String password,String phonenumber,String email)
+    {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);
@@ -35,7 +36,8 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("phone_number", phonenumber);
         contentValues.put("email", email);
         long result = myDB.insert("users", null, contentValues);
-        if (result == -1) {
+        if (result == -1)
+        {
             return false;
         } else {
             return true;
@@ -59,8 +61,9 @@ public class DBHelper extends SQLiteOpenHelper {
         public Boolean checkusernamePassword(String username,String password)
         {
             SQLiteDatabase myDB=this.getWritableDatabase();
-            @SuppressLint("Recycle") Cursor cursor= myDB.rawQuery("select * from users where username = ? and password=?",new String[]{username,password});
-             if(cursor.getCount()>0)
+            @SuppressLint("Recycle")
+            Cursor cursor= myDB.rawQuery("select * from users where username = ? and password=?",new String[]{username,password});
+            if(cursor.getCount()>0)
                  return true;
              else
                  return false;

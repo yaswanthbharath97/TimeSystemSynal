@@ -9,27 +9,43 @@ public class Contact
 {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private String name;
-    private String number;
 
-    public Contact(String name, String number) {
+    private final String name;
+
+    private final String number;
+
+    private final String images;
+
+
+
+    public Contact(String name, String number,String images) {
         this.name = name;
         this.number = number;
+        this.images=images;
     }
 
-    public void setId(int id) {
+    public String getImages()
+    {
+        return images;
+    }
+
+    public void setId(int id)
+    {
         this.id = id;
     }
 
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public String getNumber() {
+    public String getNumber()
+    {
         return number;
     }
 }

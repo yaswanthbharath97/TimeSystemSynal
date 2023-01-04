@@ -26,4 +26,5 @@
     <string name="enter_message" />
     <string name="send" />
     <string name="ram">Ram</string>
+    <string name="number">number</string>
 </resources>

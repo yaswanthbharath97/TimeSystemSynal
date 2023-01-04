@@ -1,39 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp"
-    android:id="@+id/parent_view">
+    android:padding="8dp">
 
 
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/image"
-        android:src="@mipmap/ic_launcher"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ram"
-        android:textSize="20sp"
+        android:layout_centerVertical="true">
 
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="85dp"
-        android:id="@+id/list_text"
-        />
-        <TextView
-            android:layout_width="wrap_content"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image"
+            android:layout_width="57dp"
+            android:layout_height="57dp"
+            android:src="@drawable/nature" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_marginTop="0dp"
-            android:layout_marginStart="85dp"
-            android:text="number"
-            android:id="@+id/Phonenumber"/>
-</LinearLayout>
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/list_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="@string/ram"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+
+
+                />
+
+            <TextView
+                android:id="@+id/phone1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="0dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/number"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </RelativeLayout>

@@ -1,53 +1,108 @@
- package com.example.chatapplication;
+package com.example.chatapplication;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableArrayList;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.example.chatapplication.entity.Contact;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "RecyclerViewAdapter";
 
-    private ArrayList<String>mImages=new ArrayList<>();
-    private ArrayList<String>mImagesText=new ArrayList<>();
+    private List<Contact> contacts = new ArrayList<>();
+    private Context context;
 
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, null);
+
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Contact contact = contacts.get(position);
+        holder.name.setText(contact.getName());
+        holder.phoneno.setText(contact.getNumber());
+       if(!Picasso.get().isLoggingEnabled()) {
+
+           Picasso.get().setLoggingEnabled(true);
+           Picasso.get().setIndicatorsEnabled(true);
+
+       }
+        Picasso.get()
+                .load(contact.getImages()).placeholder(R.drawable.roundp)
+                .error(R.drawable.roundp).
+                 resize(150, 150)
+                .centerInside()
+                .into(holder.imageview);
+
+        holder.layout.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Toast.makeText(v.getContext(), "name", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+
+        return contacts.size();
+
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setContacts(List<Contact> contacts)
     {
+        this.contacts = contacts;
+        notifyDataSetChanged();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
         CircleImageView imageview;
-        TextView textView;
+        TextView name;
+        TextView phoneno;
         RelativeLayout layout;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageview=itemView.findViewById(R.id.image);
-            textView=itemView.findViewById(R.id.list_text);
-            layout=itemView.findViewById(R.id.parent_view); 
+
+            imageview = itemView.findViewById(R.id.image);
+            name = itemView.findViewById(R.id.list_text);
+            phoneno = itemView.findViewById(R.id.phone1);
+            layout = itemView.findViewById(R.id.parent_view);
+
+        }
+
+        @Override
+        public void onClick(View v) {
 
         }
     }

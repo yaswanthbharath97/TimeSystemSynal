@@ -19,6 +19,8 @@ public class ContactViewModel extends AndroidViewModel {
 
     public ContactViewModel(@NonNull Application application) {
         super(application);
+          this.contactRepository=new ContactRepository(application);
+           this.allContacts=this.contactRepository.getAllContacts();
     }
 
 
@@ -31,7 +33,12 @@ public class ContactViewModel extends AndroidViewModel {
         contactRepository.delete(contact);
     }
 
-    public LiveData<List<Contact>> getAllContacts() {
+    public LiveData<List<Contact>> getAllContacts()
+    {
+
         return allContacts;
     }
+
+
+
 }

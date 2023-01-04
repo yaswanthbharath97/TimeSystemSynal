@@ -9,4 +9,5 @@
     <string name="login">LOG-IN</string>
     <string name="Register">Register</string>
     <string name="sign_up">Sign Up</string>
+    <string name="number">number</string>
 </resources>
