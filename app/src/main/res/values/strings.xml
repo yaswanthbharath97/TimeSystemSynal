@@ -27,4 +27,6 @@
     <string name="send" />
     <string name="ram">Ram</string>
     <string name="number">number</string>
+    <string name="message">Message</string>
+    <string name="Send">Send</string>
 </resources>

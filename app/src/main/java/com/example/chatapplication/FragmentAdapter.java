@@ -13,7 +13,8 @@ public class FragmentAdapter extends FragmentStateAdapter {
         super(fragmentManager, lifecycle);
     }
 
-    public FragmentAdapter(Dashboard dashboard) {
+    public FragmentAdapter(Dashboard dashboard)
+    {
         super(dashboard);
     }
 

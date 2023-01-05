@@ -2,16 +2,15 @@ package com.example.chatapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.databinding.ObservableArrayList;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -28,7 +27,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private static final String TAG = "RecyclerViewAdapter";
 
     private List<Contact> contacts = new ArrayList<>();
-    private Context context;
+    private final Context context;
+
+    public RecyclerViewAdapter(Context context) {
+        this.context = context;
+    }
 
 
     @NonNull
@@ -50,12 +53,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
            Picasso.get().setIndicatorsEnabled(true);
 
        }
+
         Picasso.get()
                 .load(contact.getImages()).placeholder(R.drawable.roundp)
-                .error(R.drawable.roundp).
-                 resize(150, 150)
-                .centerInside()
+                .error(R.drawable.roundp)
                 .into(holder.imageview);
+
+       holder.imageview.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v)
+           {
+               Intent intent=new Intent(context,UserImageView. class);
+               intent.putExtra("Url",contact.getImages());
+               context.startActivity(intent);
+           }
+          });
 
         holder.layout.setOnClickListener(new View.OnClickListener()
         {
@@ -63,13 +75,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View v)
             {
                 Toast.makeText(v.getContext(), "name", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(context,MasterPage.class);
+                context.startActivity(intent);
             }
         });
 
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
 
         return contacts.size();
 
@@ -83,7 +98,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    {
 
         CircleImageView imageview;
         TextView name;

@@ -71,9 +71,9 @@ public abstract class ContactDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            contactDao.insert(new Contact("Animsh","6854712391","https://squar.github.io/picasso/static/sample.png "));
-            contactDao.insert(new Contact("roy","6854712391","https://square.github.io/picasso/static/sample.png "));
-            contactDao.insert(new Contact("Joi","5855684558","https://square.github.io/picasso/static/sample.png   "));
+            contactDao.insert(new Contact("Animsh","6854712391","https://picsum.photos/200/300 "));
+            contactDao.insert(new Contact("roy","6854712391","https://source.unsplash.com/user/c_v_r/1900x800"));
+            contactDao.insert(new Contact("Joi","5855684558","https://source.unsplash.com/user/c_v_r/100x100"));
             fillWithStartingData(activity);
             return null;
         }

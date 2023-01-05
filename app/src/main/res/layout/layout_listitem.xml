@@ -15,7 +15,7 @@
             android:id="@+id/image"
             android:layout_width="57dp"
             android:layout_height="57dp"
-            android:src="@drawable/nature" />
+            android:src="@drawable/rounddp" />
 
 
         <LinearLayout
