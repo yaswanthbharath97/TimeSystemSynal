@@ -3,6 +3,7 @@ package com.example.chatapplication;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,16 +57,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         Picasso.get()
                 .load(contact.getImages()).placeholder(R.drawable.roundp)
-                .error(R.drawable.roundp)
+                .error(R.drawable.roundp).
+                 fit()
+                .centerCrop()
                 .into(holder.imageview);
 
        holder.imageview.setOnClickListener(new View.OnClickListener() {
+
            @Override
            public void onClick(View v)
            {
-               Intent intent=new Intent(context,UserImageView. class);
-               intent.putExtra("Url",contact.getImages());
-               context.startActivity(intent);
+
+
+                   Intent intent = new Intent(context, UserImageView.class);
+                   intent.putExtra("Url", contact.getImages());
+                   intent.putExtra("title",contact.getName());
+                   context.startActivity(intent);
+
+
            }
           });
 
@@ -118,7 +127,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(View v)
+        {
+
 
         }
     }
