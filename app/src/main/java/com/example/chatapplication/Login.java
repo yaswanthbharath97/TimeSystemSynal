@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Objects;
+
 public class Login extends AppCompatActivity {
 
     TextInputLayout username ,password;
@@ -34,7 +36,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String user=username.getEditText().getText().toString();
+                String user= Objects.requireNonNull(username.getEditText()).getText().toString();
                 String pass=password.getEditText().getText().toString();
                 if( user.equals("")||pass.equals(""))
                 {
