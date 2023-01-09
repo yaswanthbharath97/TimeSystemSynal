@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity {
                 else
                 {
                    Boolean result=myDB.checkusernamePassword(user,pass);
-                   if(result)
+                   if(result==true)
                    {
                       Intent intent=new Intent(Login.this,Dashboard.class);
                       startActivity(intent);
