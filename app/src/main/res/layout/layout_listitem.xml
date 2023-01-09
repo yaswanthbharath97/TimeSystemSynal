@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/parent_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,10 +14,11 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image"
+            app:civ_border_overlay="true"
             android:layout_width="57dp"
             android:layout_height="57dp"
-            android:src="@drawable/rounddp" />
-
+            android:src="@drawable/person"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"

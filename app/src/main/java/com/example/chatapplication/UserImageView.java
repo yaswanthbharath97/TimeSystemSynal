@@ -8,11 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.icu.text.CaseMap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
@@ -31,7 +34,7 @@ public class UserImageView extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
 
 
@@ -51,11 +54,25 @@ public class UserImageView extends AppCompatActivity {
     }
     private void setImage(String Imageurl,String title)
     {
+        ProgressBar progressBar=findViewById(R.id.progress);
+
         ImageView image=findViewById(R.id.userImage);
         Picasso.get().
-                load(Imageurl)
-                .placeholder(R.drawable.image).fit()
-                .into(image);
+                 load(Imageurl)
+                .placeholder(R.drawable.istockphoto).fit()
+                .into(image,new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        progressBar.setVisibility(View.INVISIBLE);
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+
+                    }
+                });
+
 
 
     }

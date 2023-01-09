@@ -11,18 +11,22 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public DBHelper( Context context) {
+
+    public DBHelper( Context context)
+    {
         super(context,"Login.db",null,1);
     }
 
     @Override //cretes table
-    public void onCreate(SQLiteDatabase myDB) {
+    public void onCreate(SQLiteDatabase myDB)
+    {
         myDB.execSQL("create Table users(username Text primary key,password Text,phone_number Text,email Text)");
 
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase myDB, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase myDB, int oldVersion, int newVersion)
+    {
         myDB.execSQL("drop Table if exists users");
     }
 

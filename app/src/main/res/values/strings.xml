@@ -29,4 +29,6 @@
     <string name="number">number</string>
     <string name="message">Message</string>
     <string name="Send">Send</string>
+    <string name="todo">TODO</string>
+    <string name="UserProfile" />
 </resources>

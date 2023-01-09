@@ -23,12 +23,13 @@ public final class Dashboard extends AppCompatActivity {
     FragmentAdapter pagerAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
+
         super.onCreate(savedInstanceState);
         binding=DashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Objects.requireNonNull(getSupportActionBar()).setElevation(0);
-
         pagerAdapter=new FragmentAdapter(this);
         binding.viewpager2.setAdapter(pagerAdapter);
         new TabLayoutMediator(binding.tablayout,binding.viewpager2,(tab, position) -> tab.setText(tabTitles[position])).attach();

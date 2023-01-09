@@ -7,6 +7,7 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.chatapplication.entity.Contact;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -56,10 +58,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
        }
 
         Picasso.get()
-                .load(contact.getImages()).placeholder(R.drawable.roundp)
-                .error(R.drawable.roundp).
+                .load(contact.getImages()).placeholder(R.drawable.person)
+                .error(R.drawable.person).
                  fit()
-                .centerCrop()
                 .into(holder.imageview);
 
        holder.imageview.setOnClickListener(new View.OnClickListener() {
@@ -67,14 +68,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
            @Override
            public void onClick(View v)
            {
-
-
-                   Intent intent = new Intent(context, UserImageView.class);
-                   intent.putExtra("Url", contact.getImages());
-                   intent.putExtra("title",contact.getName());
-                   context.startActivity(intent);
-
-
+               Intent intent = new Intent(context, UserImageView.class);
+               intent.putExtra("Url", contact.getImages());
+               intent.putExtra("title",contact.getName());
+               intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+               context.startActivity(intent);
            }
           });
 
@@ -107,14 +105,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    public class ViewHolder extends RecyclerView.ViewHolder
     {
 
         CircleImageView imageview;
         TextView name;
         TextView phoneno;
         RelativeLayout layout;
-
+        ProgressBar progressBar;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -123,14 +121,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             name = itemView.findViewById(R.id.list_text);
             phoneno = itemView.findViewById(R.id.phone1);
             layout = itemView.findViewById(R.id.parent_view);
+            progressBar=itemView.findViewById(R.id.progress);
 
         }
 
-        @Override
-        public void onClick(View v)
-        {
 
-
-        }
     }
 }
