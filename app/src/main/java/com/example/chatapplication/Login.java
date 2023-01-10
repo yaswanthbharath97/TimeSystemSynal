@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
 
                 String user= Objects.requireNonNull(username.getEditText()).getText().toString();
-                String pass=password.getEditText().getText().toString();
+                String pass= Objects.requireNonNull(password.getEditText()).getText().toString();
                 if( user.equals("")||pass.equals(""))
                 {
 
