@@ -17,7 +17,7 @@
             app:civ_border_overlay="true"
             android:layout_width="57dp"
             android:layout_height="57dp"
-            android:src="@drawable/person"
+            android:src="@drawable/defaultprofile"
             />
 
         <LinearLayout

@@ -58,8 +58,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
        }
 
         Picasso.get()
-                .load(contact.getImages()).placeholder(R.drawable.person)
-                .error(R.drawable.person).
+                .load(contact.getImages()).placeholder(R.drawable.defaultprofile)
+                .error(R.drawable.defaultprofile).
                  fit()
                 .into(holder.imageview);
 

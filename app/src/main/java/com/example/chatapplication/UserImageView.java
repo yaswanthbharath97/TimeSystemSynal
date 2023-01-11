@@ -4,6 +4,7 @@ package com.example.chatapplication;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.icu.text.CaseMap;
 import android.os.Bundle;
@@ -24,20 +25,17 @@ public class UserImageView extends AppCompatActivity {
 
     private static final String TAG = "UserImageView";
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_image_view);
         getIncomingIntent();
         ActionBar actionBar = getSupportActionBar();
-
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-
-
-
-
     }
 
     private void getIncomingIntent()
@@ -59,8 +57,9 @@ public class UserImageView extends AppCompatActivity {
         ImageView image=findViewById(R.id.userImage);
         Picasso.get().
                  load(Imageurl)
-                .placeholder(R.drawable.istockphoto).fit()
-                .into(image,new Callback() {
+                .placeholder(R.drawable.placeholderimage).fit()
+                 .centerInside()
+                 .into(image,new Callback() {
                     @Override
                     public void onSuccess() {
                         progressBar.setVisibility(View.INVISIBLE);
