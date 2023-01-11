@@ -29,13 +29,13 @@ public class UserImageView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_image_view);
         getIncomingIntent();
         ActionBar actionBar = getSupportActionBar();
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
     }
 
     private void getIncomingIntent()

@@ -1,8 +1,11 @@
 package com.example.chatapplication;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import androidx.lifecycle.Observer;
@@ -26,10 +29,11 @@ public class ChatFragment extends Fragment  {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-
+    RecyclerViewAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_chat, container, false);
 
@@ -39,16 +43,11 @@ public class ChatFragment extends Fragment  {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-
-
-
         RecyclerView recyclerView1=(RecyclerView)view.findViewById(R.id.recyclerview);
-
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity());
         recyclerView1.setLayoutManager(layoutManager);
-        RecyclerViewAdapter adapter=new RecyclerViewAdapter(getActivity());
+        adapter=new RecyclerViewAdapter(getActivity());
         recyclerView1.setAdapter(adapter);
-
         ContactViewModel contactViewModel = new ViewModelProvider(this).get(ContactViewModel.class);
         contactViewModel.getAllContacts().observe(getActivity(), new Observer<List<Contact>>()
         {
@@ -61,4 +60,6 @@ public class ChatFragment extends Fragment  {
 
 
     }
+
+
 }

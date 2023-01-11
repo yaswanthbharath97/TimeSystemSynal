@@ -1,22 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/appColor"
-        app:contentInsetStart="0dp"
-        android:id="@+id/toolbar">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="57dp"
-            android:layout_height="57dp"
-            android:src="@drawable/defaultprofile"/>
-
-    </com.google.android.material.appbar.MaterialToolbar>
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -44,11 +31,14 @@
 
         <EditText
             android:id="@+id/textInput"
-            android:layout_width="0dip"
+            android:layout_width="300dp"
             android:layout_height="48dp"
-            android:layout_weight="1"
-            android:hint="@string/message">
-
+            android:hint="@string/message"
+            android:paddingStart="10dp"
+            android:background="@drawable/roundededittext"
+            android:backgroundTint="@color/appColor"
+            tools:ignore="RtlSymmetry"
+            android:autofillHints="">
             <requestFocus />
         </EditText>
 

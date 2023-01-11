@@ -16,23 +16,21 @@ import java.util.Objects;
 public final class Dashboard extends AppCompatActivity {
 
 
-    private final String[] tabTitles=new String[]{"Chats","Groups"};
+    private final String[] tabTitles = new String[]{"Chats", "Groups"};
 
     DashboardBinding binding;
-
     FragmentAdapter pagerAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        binding=DashboardBinding.inflate(getLayoutInflater());
+        binding = DashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Objects.requireNonNull(getSupportActionBar()).setElevation(0);
-        pagerAdapter=new FragmentAdapter(this);
+        pagerAdapter =new FragmentAdapter(getSupportFragmentManager(),getLifecycle());
         binding.viewpager2.setAdapter(pagerAdapter);
-        new TabLayoutMediator(binding.tablayout,binding.viewpager2,(tab, position) -> tab.setText(tabTitles[position])).attach();
+        new TabLayoutMediator(binding.tablayout, binding.viewpager2, (tab, position) -> tab.setText(tabTitles[position])).attach();
 
     }
 }

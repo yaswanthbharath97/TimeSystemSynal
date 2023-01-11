@@ -3,7 +3,6 @@ package com.example.chatapplication;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.chatapplication.entity.Contact;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,12 +27,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private static final String TAG = "RecyclerViewAdapter";
 
-    private List<Contact> contacts = new ArrayList<>();
-    private final Context context;
 
-    public RecyclerViewAdapter(Context context) {
+    public RecyclerViewAdapter( Context context) {
+        super();
+
         this.context = context;
     }
+
+    private List<Contact> contacts = new ArrayList<Contact>();
+    private final Context context;
+
+
 
 
     @NonNull
@@ -51,10 +54,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.name.setText(contact.getName());
         holder.phoneno.setText(contact.getNumber());
        if(!Picasso.get().isLoggingEnabled()) {
-
            Picasso.get().setLoggingEnabled(true);
            Picasso.get().setIndicatorsEnabled(true);
-
        }
 
         Picasso.get()
@@ -105,7 +106,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
+    public static class ViewHolder extends RecyclerView.ViewHolder
     {
 
         CircleImageView imageview;
