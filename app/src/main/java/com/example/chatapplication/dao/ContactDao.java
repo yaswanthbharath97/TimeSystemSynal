@@ -11,7 +11,8 @@ import com.example.chatapplication.entity.Contact;
 import java.util.List;
 
 @Dao
-public interface ContactDao {
+public interface ContactDao
+{
 
     @Insert
     void insert(Contact contact);

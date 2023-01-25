@@ -25,7 +25,8 @@ import java.io.InputStreamReader;
 
 
 @Database(entities = {Contact.class},version = 1)
-public abstract class ContactDatabase extends RoomDatabase {
+public abstract class ContactDatabase extends RoomDatabase
+{
 
     @SuppressLint("StaticFieldLeak")
     private static ContactDatabase instance;
@@ -114,7 +115,8 @@ public abstract class ContactDatabase extends RoomDatabase {
         String line;
 
       try {
-          while ((line= reader.readLine())!=null){
+          while ((line= reader.readLine())!=null)
+          {
               builder.append(line);
           }
 

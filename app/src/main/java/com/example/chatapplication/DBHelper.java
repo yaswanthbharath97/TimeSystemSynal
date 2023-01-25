@@ -61,7 +61,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         }
 
-        //this method is used in logi page when user entered the values are same or not
+        //this method is used in login page when user entered the values are same or not
         public Boolean checkusernamePassword(String username,String password)
         {
             SQLiteDatabase myDB=this.getWritableDatabase();

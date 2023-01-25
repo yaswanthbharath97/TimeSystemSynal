@@ -5,44 +5,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f1f1f1"
-    tools:context=".chat"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".chat">
 
-       <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+    <!-- <com.google.android.material.appbar.AppBarLayout
+         android:layout_width="match_parent"
+         android:layout_height="?actionBarSize">
+
+     <com.google.android.material.appbar.CollapsingToolbarLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:fitsSystemWindows="true">
+
+     <androidx.appcompat.widget.Toolbar
+         android:layout_width="match_parent"
+         android:layout_height="?attr/actionBarSize"
+         android:background="@color/appColor"
+         android:id="@+id/toolbarid"
+         app:layout_collapseMode="pin"
+         >
+
+         <de.hdodenhof.circleimageview.CircleImageView
+             android:layout_width="40dp"
+             android:layout_height="40dp"
+             android:background="@color/white"
+             android:src="@drawable/defaultprofile"/>
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Tamil"
+          />
+     </androidx.appcompat.widget.Toolbar>
+
+
+
+
+     </com.google.android.material.appbar.CollapsingToolbarLayout>
+     </com.google.android.material.appbar.AppBarLayout>-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:background="#f1f1f1"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+        android:layout_height="wrap_content">
 
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-        android:id="@+id/collapsing"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        app:contentScrim="?attr/colorPrimary"
-        app:expandedTitleMarginBottom="20dp"
-        app:expandedTitleMarginEnd="64dp"
-        app:expandedTitleMarginStart="48dp"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/appColor"
-            android:fitsSystemWindows="true"
-            android:scaleType="centerCrop"
-            app:layout_collapseMode="parallax"/>
-
-            <androidx.appcompat.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:layout_collapseMode="pin"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            android:background="@color/appColor"
+            android:fitsSystemWindows="true"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    </com.google.android.material.appbar.CollapsingToolbarLayout>
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/defaultprofile" />
 
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:text="Text"
+                android:fontFamily="@font/open_sans_semibold"
+                android:textColor="#fff"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

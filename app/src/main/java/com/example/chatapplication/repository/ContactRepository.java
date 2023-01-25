@@ -66,18 +66,21 @@ public class ContactRepository {
             contactDao.insert(contacts[0]);
             return null;
         }
+
     }
 
     private static class DeleteContactAsyncTask extends AsyncTask<Contact,Void,Void>
     {
         private final ContactDao contactDao;
 
-        public DeleteContactAsyncTask(ContactDao contactDao) {
+        public DeleteContactAsyncTask(ContactDao contactDao)
+        {
             this.contactDao = contactDao;
         }
 
         @Override
-        protected Void doInBackground(Contact... contacts) {
+        protected Void doInBackground(Contact... contacts)
+        {
             contactDao.delete(contacts[0]);
             return null;
         }

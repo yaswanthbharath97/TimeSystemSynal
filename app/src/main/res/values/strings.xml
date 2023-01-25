@@ -31,4 +31,6 @@
     <string name="Send">Send</string>
     <string name="todo">TODO</string>
     <string name="UserProfile" />
+    <string name="Message">Message</string>
+    <string name="_9_11_am">9:11 AM</string>
 </resources>

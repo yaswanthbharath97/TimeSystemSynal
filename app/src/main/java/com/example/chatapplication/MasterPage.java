@@ -4,11 +4,13 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Toolbar;
 
 import java.util.Objects;
 
 public class MasterPage extends AppCompatActivity {
 
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -18,4 +20,6 @@ public class MasterPage extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }
+
+
 }

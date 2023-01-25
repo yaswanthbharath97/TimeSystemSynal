@@ -28,35 +28,34 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private static final String TAG = "RecyclerViewAdapter";
 
 
-    public RecyclerViewAdapter( Context context) {
+    public RecyclerViewAdapter( Context context)
+    {
         super();
-
         this.context = context;
     }
 
     private List<Contact> contacts = new ArrayList<Contact>();
     private final Context context;
 
-
-
-
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, null);
-
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position)
+    {
         Contact contact = contacts.get(position);
         holder.name.setText(contact.getName());
         holder.phoneno.setText(contact.getNumber());
-       if(!Picasso.get().isLoggingEnabled()) {
+        if(!Picasso.get().isLoggingEnabled())
+        {
            Picasso.get().setLoggingEnabled(true);
            Picasso.get().setIndicatorsEnabled(true);
-       }
+        }
 
         Picasso.get()
                 .load(contact.getImages()).placeholder(R.drawable.defaultprofile)
@@ -115,9 +114,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         RelativeLayout layout;
         ProgressBar progressBar;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
+        public ViewHolder(@NonNull View itemView)
+        {
 
+            super(itemView);
             imageview = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.list_text);
             phoneno = itemView.findViewById(R.id.phone1);
