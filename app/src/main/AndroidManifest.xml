@@ -25,7 +25,8 @@
         </activity>
         <activity
             android:name=".MasterPage"
-            android:exported="false"
+            android:exported="true"
+            android:theme="@style/Theme.MasterPage"
             android:parentActivityName=".Dashboard"
             android:screenOrientation="portrait">
             <meta-data

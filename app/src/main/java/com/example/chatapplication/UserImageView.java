@@ -68,6 +68,7 @@ public class UserImageView extends AppCompatActivity {
 
                     @Override
                     public void onError(Exception e) {
+                        progressBar.setVisibility(View.VISIBLE);
 
                     }
                 });

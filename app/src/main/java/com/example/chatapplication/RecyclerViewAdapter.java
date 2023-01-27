@@ -26,6 +26,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "RecyclerViewAdapter";
+    private List<Contact> contacts = new ArrayList<Contact>();
+    private final Context context;
+
+
 
 
     public RecyclerViewAdapter( Context context)
@@ -34,8 +38,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.context = context;
     }
 
-    private List<Contact> contacts = new ArrayList<Contact>();
-    private final Context context;
 
     @NonNull
     @Override
@@ -83,6 +85,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             {
                 Toast.makeText(v.getContext(), "name", Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(context,MasterPage.class);
+                intent.putExtra("Url", contact.getImages());
+                intent.putExtra("title",contact.getName());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });

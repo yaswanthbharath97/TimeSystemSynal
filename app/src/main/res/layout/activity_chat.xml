@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/toolbar1"
     android:background="#f1f1f1"
     android:fitsSystemWindows="true"
     tools:context=".chat">
@@ -62,16 +63,17 @@
                 android:layout_height="50dp"
                 android:src="@drawable/defaultprofile" />
 
+
             <TextView
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:text="Text"
+                android:text="@string/text"
                 android:fontFamily="@font/open_sans_semibold"
                 android:textColor="#fff"
                 android:textSize="22sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
