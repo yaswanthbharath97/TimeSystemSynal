@@ -48,7 +48,6 @@ public class MasterPage extends AppCompatActivity {
             String image = getIntent().getStringExtra("Url");
             String Title = getIntent().getStringExtra("title");
             setImage(image, Title);
-
         }
     }
 
@@ -57,12 +56,10 @@ public class MasterPage extends AppCompatActivity {
         CircleImageView imageView = findViewById(R.id.profile_image);
         username.setText(title);
         Picasso.get().
-                load(Imageurl)
+                load(Imageurl).placeholder(R.drawable.placeholderimage)
                 .fit()
                 .centerInside()
                 .into(imageView);
-
-
     }
 
 }

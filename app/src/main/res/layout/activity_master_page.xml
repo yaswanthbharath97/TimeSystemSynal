@@ -6,12 +6,12 @@
     android:layout_centerVertical="true"
     tools:context=".MasterPage">
 
-     <com.google.android.material.appbar.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-         app:contentInsetStartWithNavigation="0dp"
-         android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        app:contentInsetStartWithNavigation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -19,92 +19,96 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/appColor"
             android:fitsSystemWindows="true"
-            android:contentInsetLeft="0dp"
-            android:contentInsetStart="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            android:contentInsetRight="0dp"
-            android:contentInsetEnd="0dp"
-            app:contentInsetRight="0dp"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
             app:contentInsetEnd="0dp"
-            app:contentInsetStartWithNavigation="0dp"
-            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp">
 
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                app:civ_border_color="@color/appColor"
+                android:layout_gravity="start"
                 android:src="@drawable/defaultprofile"
-              />
+                app:civ_border_color="@color/white" />
 
             <TextView
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/open_sans_semibold"
+                android:text="@string/text"
                 android:textColor="#fff"
-                android:textSize="15sp"
-              />
+                android:textSize="15sp" />
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-     <androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatlist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="3dp"
-         android:layout_below="@id/bar_layout"
-        android:id="@+id/chatlist"
-    />
+        android:layout_below="@id/bar_layout"
+        android:layout_marginBottom="3dp"/>
 
-        <LinearLayout
+    <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:gravity="center"
+        android:layout_marginTop="1dip"
+        android:layout_marginBottom="3dp"
         android:orientation="horizontal">
 
 
         <EditText
             android:id="@+id/entermessage"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/roundededittext"
-            android:ems="10"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="2"
+            android:layout_marginStart="3dp"
+            android:background="@drawable/edittext_bg"
             android:hint="@string/Message"
-            android:inputType="textPersonName"
-            android:paddingBottom="10dp"
-        />
+            android:drawableStart="@drawable/emojii"
+            android:drawableEnd="@drawable/camera"
+            android:drawablePadding="10dp"
+            android:inputType="textMultiLine"
+            android:maxLines="5"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:paddingStart="10dp"
+            android:singleLine="false"
+            android:fadeScrollbars="false"
+            tools:ignore="RtlSymmetry,TouchTargetSizeCheck"
+       />
 
 
-      <!--  <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/itemSendButton_id"
-            android:layout_width="125dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:clickable="true"
-            android:contentDescription="@string/Send"
-            android:focusable="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/send" />-->
+        <!--  <androidx.appcompat.widget.AppCompatImageButton
+              android:id="@+id/itemSendButton_id"
+              android:layout_width="125dp"
+              android:layout_height="48dp"
+              android:layout_gravity="center_vertical"
+              android:clickable="true"
+              android:contentDescription="@string/Send"
+              android:focusable="true"
+              android:scaleType="fitCenter"
+              android:src="@drawable/send" />-->
 
         <ImageButton
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:background="@drawable/sendbutton"
+            android:padding="8dp"
+            android:layout_gravity="bottom"
             app:srcCompat="@drawable/send_icon_foreground"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:padding="5dp"/>
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     </LinearLayout>
 </RelativeLayout>

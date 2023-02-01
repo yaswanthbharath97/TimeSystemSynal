@@ -36,6 +36,7 @@ public class UserImageView extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+
     }
 
     private void getIncomingIntent()
@@ -50,6 +51,8 @@ public class UserImageView extends AppCompatActivity {
 
         }
     }
+
+
     private void setImage(String Imageurl,String title)
     {
         ProgressBar progressBar=findViewById(R.id.progress);

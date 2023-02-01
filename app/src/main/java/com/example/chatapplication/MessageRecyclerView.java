@@ -8,14 +8,13 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 public class MessageRecyclerView extends RecyclerView.Adapter<MessageRecyclerView.ViewHolder> {
 
       private Context context;
 
-
-
+    public MessageRecyclerView(Context context) {
+        this.context = context;
+    }
 
 
     @NonNull
@@ -34,6 +33,7 @@ public class MessageRecyclerView extends RecyclerView.Adapter<MessageRecyclerVie
     @Override
     public int getItemCount()
     {
+
         return 0;
     }
 
