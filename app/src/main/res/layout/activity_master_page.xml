@@ -4,27 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerVertical="true"
+    android:layout_alignParentStart="true"
     tools:context=".MasterPage">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        app:contentInsetStartWithNavigation="0dp">
+
+       >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/appColor"
+            android:layout_margin="0dp"
             android:fitsSystemWindows="true"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
             app:contentInsetEnd="0dp"
             app:contentInsetLeft="0dp"
             app:contentInsetRight="0dp"
             app:contentInsetStart="0dp"
-            app:contentInsetStartWithNavigation="0dp">
+            app:contentInsetStartWithNavigation="0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -62,16 +65,16 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="1dip"
         android:layout_marginBottom="3dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+      >
 
 
         <EditText
             android:id="@+id/entermessage"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="2"
-            android:layout_marginStart="3dp"
+            android:layout_weight="1"
+            android:layout_marginStart="5dp"
             android:background="@drawable/edittext_bg"
             android:hint="@string/Message"
             android:drawableStart="@drawable/emojii"
@@ -83,8 +86,10 @@
             android:scrollbars="vertical"
             android:paddingStart="10dp"
             android:singleLine="false"
+            android:textSize="15sp"
             android:fadeScrollbars="false"
             tools:ignore="RtlSymmetry,TouchTargetSizeCheck"
+
        />
 
 
@@ -107,6 +112,7 @@
             android:background="@drawable/sendbutton"
             android:padding="8dp"
             android:layout_gravity="bottom"
+            android:scaleType="centerInside"
             app:srcCompat="@drawable/send_icon_foreground"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 

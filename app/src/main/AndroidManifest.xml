@@ -36,6 +36,7 @@
         <activity
             android:name=".UserImageView"
             android:exported="false"
+            android:theme="@style/Theme.MasterPage"
             android:parentActivityName=".Dashboard"
             android:screenOrientation="portrait">
             <meta-data

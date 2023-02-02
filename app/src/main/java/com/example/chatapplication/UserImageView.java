@@ -25,17 +25,19 @@ public class UserImageView extends AppCompatActivity {
 
     private static final String TAG = "UserImageView";
 
-
+     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_image_view);
-        getIncomingIntent();
-        ActionBar actionBar = getSupportActionBar();
+
+         toolbar=findViewById(R.id.imageToolbar);
+         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getIncomingIntent();
 
     }
 
@@ -56,8 +58,9 @@ public class UserImageView extends AppCompatActivity {
     private void setImage(String Imageurl,String title)
     {
         ProgressBar progressBar=findViewById(R.id.progress);
-
+        TextView textView=findViewById(R.id.ImageUserName);
         ImageView image=findViewById(R.id.userImage);
+        textView.setText(title);
         Picasso.get().
                  load(Imageurl)
                 .placeholder(R.drawable.placeholderimage).fit()
