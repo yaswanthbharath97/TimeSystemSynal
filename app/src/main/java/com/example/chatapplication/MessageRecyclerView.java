@@ -8,12 +8,20 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chatapplication.entity.Message;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MessageRecyclerView extends RecyclerView.Adapter<MessageRecyclerView.ViewHolder> {
 
-      private Context context;
+      private  Context context;
+       private  List<Message> mMessageList=new ArrayList<Message>();
 
-    public MessageRecyclerView(Context context) {
+    public MessageRecyclerView(Context context,List<Message> mMessageList) {
+
         this.context = context;
+        this.mMessageList=mMessageList;
     }
 
 
