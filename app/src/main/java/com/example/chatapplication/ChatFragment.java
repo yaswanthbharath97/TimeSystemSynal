@@ -22,6 +22,7 @@ import com.example.chatapplication.entity.Contact;
 import com.example.chatapplication.viewmodel.ContactViewModel;
 
 import java.util.List;
+import java.util.Objects;
 
 
 public class ChatFragment extends Fragment  {
@@ -30,10 +31,17 @@ public class ChatFragment extends Fragment  {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
     RecyclerViewAdapter adapter;
+    RecyclerView recyclerView1;
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_chat, container, false);
 
@@ -49,7 +57,7 @@ public class ChatFragment extends Fragment  {
         adapter=new RecyclerViewAdapter(getActivity());
         recyclerView1.setAdapter(adapter);
         ContactViewModel contactViewModel = new ViewModelProvider(this).get(ContactViewModel.class);
-        contactViewModel.getAllContacts().observe(getActivity(), new Observer<List<Contact>>()
+        contactViewModel.getAllContacts().observe(requireActivity(), new Observer<List<Contact>>()
         {
             @Override
             public void onChanged(List<Contact> contacts)

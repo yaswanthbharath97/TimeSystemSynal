@@ -31,14 +31,12 @@ public class UserImageView extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_image_view);
-
-         toolbar=findViewById(R.id.imageToolbar);
-         setSupportActionBar(toolbar);
+        toolbar=findViewById(R.id.imageToolbar);
+        setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getIncomingIntent();
-
     }
 
     private void getIncomingIntent()

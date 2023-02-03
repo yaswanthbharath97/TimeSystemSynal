@@ -83,7 +83,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v)
             {
-                Toast.makeText(v.getContext(), "name", Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(context,MasterPage.class);
                 intent.putExtra("Url", contact.getImages());
                 intent.putExtra("title",contact.getName());

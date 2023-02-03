@@ -35,8 +35,10 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="start"
+                android:padding="2dp"
                 android:src="@drawable/defaultprofile"
-                app:civ_border_color="@color/white" />
+                app:civ_border_color="@color/white"
+                app:civ_circle_background_color="@color/white"/>
 
             <TextView
                 android:id="@+id/username"
@@ -79,14 +81,14 @@
             android:hint="@string/Message"
             android:drawableStart="@drawable/emojii"
             android:drawableEnd="@drawable/camera"
-            android:drawablePadding="10dp"
+            android:drawablePadding="5dp"
             android:inputType="textMultiLine"
             android:maxLines="5"
             android:padding="10dp"
             android:scrollbars="vertical"
             android:paddingStart="10dp"
             android:singleLine="false"
-            android:textSize="15sp"
+            android:layout_gravity="bottom"
             android:fadeScrollbars="false"
             tools:ignore="RtlSymmetry,TouchTargetSizeCheck"
 
@@ -105,12 +107,12 @@
               android:src="@drawable/send" />-->
 
         <ImageButton
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:background="@drawable/sendbutton"
-            android:padding="8dp"
+            android:padding="5dp"
             android:layout_gravity="bottom"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/send_icon_foreground"

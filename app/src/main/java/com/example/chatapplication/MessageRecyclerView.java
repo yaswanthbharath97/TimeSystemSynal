@@ -28,6 +28,7 @@ public class MessageRecyclerView extends RecyclerView.Adapter<MessageRecyclerVie
     public void onBindViewHolder(@NonNull MessageRecyclerView.ViewHolder holder, int position)
     {
 
+
     }
 
     @Override
