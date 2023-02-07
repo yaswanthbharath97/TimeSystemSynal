@@ -4,6 +4,7 @@ package com.example.chatapplication.entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+
 @Entity(tableName = "contact_table")
 public class Contact
 {

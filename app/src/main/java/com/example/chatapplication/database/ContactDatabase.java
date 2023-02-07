@@ -13,6 +13,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.chatapplication.R;
 import com.example.chatapplication.dao.ContactDao;
 import com.example.chatapplication.entity.Contact;
+import com.example.chatapplication.entity.Message;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +25,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
-@Database(entities = {Contact.class},version = 1)
+@Database(entities = {Contact.class, Message.class},version = 1)
 public abstract class ContactDatabase extends RoomDatabase
 {
 

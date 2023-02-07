@@ -109,6 +109,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         notifyDataSetChanged();
     }
 
+
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
 
@@ -132,4 +133,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     }
+    
 }
