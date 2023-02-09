@@ -22,6 +22,6 @@ public interface ContactDao
 
    // we will call it for showing in recyclerview
     @Query("SELECT * FROM contact_table ORDER BY name ASC")
-           LiveData<List<Contact>> getAllContact();
+    LiveData<List<Contact>> getAllContact();
 
 }

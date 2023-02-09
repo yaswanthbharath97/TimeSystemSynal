@@ -1,13 +1,17 @@
 package com.example.chatapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chatapplication.dao.MessageDao;
 import com.example.chatapplication.entity.Message;
 
 import java.util.ArrayList;
@@ -15,13 +19,24 @@ import java.util.List;
 
 public class MessageRecyclerView extends RecyclerView.Adapter<MessageRecyclerView.ViewHolder> {
 
+      private static final String Tag="MessageRecyclerAdapter";
+
       private  Context context;
        private  List<Message> mMessageList=new ArrayList<Message>();
 
-    public MessageRecyclerView(Context context,List<Message> mMessageList) {
+
+
+
+
+    public MessageRecyclerView(Context context, List<Message> mMessageList) {
 
         this.context = context;
         this.mMessageList=mMessageList;
+    }
+
+
+
+    public MessageRecyclerView(LiveData<List<Message>> allMessages) {
     }
 
 
@@ -29,12 +44,16 @@ public class MessageRecyclerView extends RecyclerView.Adapter<MessageRecyclerVie
     @Override
     public MessageRecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.right_item_message, null);
+        return new MessageRecyclerView.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MessageRecyclerView.ViewHolder holder, int position)
     {
+     Message message=mMessageList.get(position);
+        holder.textView.setText(message.getMessage());
+
 
 
     }
@@ -43,17 +62,21 @@ public class MessageRecyclerView extends RecyclerView.Adapter<MessageRecyclerVie
     public int getItemCount()
     {
 
-        return 0;
+        return mMessageList.size();
     }
-
-
+@SuppressLint({ "NotifyDataSetChanged"})
+  public void setMessage( List<Message> mMessageList)
+  {
+      this.mMessageList=mMessageList;
+      notifyDataSetChanged();
+  }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        EditText editText;
+      TextView textView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            editText=itemView.findViewById(R.id.entermessage);
+            textView=itemView.findViewById(R.id.senderText);
 
         }
     }

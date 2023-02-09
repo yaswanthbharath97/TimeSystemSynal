@@ -12,6 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.chatapplication.R;
 import com.example.chatapplication.dao.ContactDao;
+import com.example.chatapplication.dao.MessageDao;
 import com.example.chatapplication.entity.Contact;
 import com.example.chatapplication.entity.Message;
 
@@ -26,7 +27,7 @@ import java.io.InputStreamReader;
 
 
 @Database(entities = {Contact.class, Message.class},version = 1)
-public abstract class ContactDatabase extends RoomDatabase
+public abstract class   ContactDatabase extends RoomDatabase
 {
 
     @SuppressLint("StaticFieldLeak")
@@ -36,6 +37,8 @@ public abstract class ContactDatabase extends RoomDatabase
     private static  Context activity;
 
     public abstract ContactDao contactDao();
+
+    public abstract MessageDao messageDao();
 
     public static synchronized  ContactDatabase getInstance(Context context)
     {
@@ -59,11 +62,13 @@ public abstract class ContactDatabase extends RoomDatabase
             new PopulateDbAsyncTask(instance).execute();
         }
     };
+
+
     private static  class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>
     {
 
 
-        private ContactDao contactDao;
+        private final ContactDao contactDao;
 
         private PopulateDbAsyncTask(@NonNull ContactDatabase contactDatabase)
         {

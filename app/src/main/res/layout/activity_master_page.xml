@@ -56,8 +56,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatlist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/bar_layout"
+        android:layout_above="@id/linearLayout1"
+
         android:layout_marginBottom="3dp"/>
 
     <LinearLayout
@@ -65,15 +67,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="1dip"
         android:layout_marginBottom="3dp"
         android:orientation="horizontal"
+
       >
 
 
         <EditText
             android:id="@+id/entermessage"
-            android:layout_width="0dip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="5dp"
@@ -91,8 +93,7 @@
             android:layout_gravity="bottom"
             android:fadeScrollbars="false"
             tools:ignore="RtlSymmetry,TouchTargetSizeCheck"
-
-       />
+          />
 
 
         <!--  <androidx.appcompat.widget.AppCompatImageButton
@@ -107,13 +108,13 @@
               android:src="@drawable/send" />-->
 
         <ImageButton
+            android:id="@+id/sendButton"
             android:layout_width="43dp"
             android:layout_height="43dp"
+            android:layout_gravity="bottom"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
-            android:background="@drawable/sendbutton"
-            android:padding="5dp"
-            android:layout_gravity="bottom"
+            android:background="@drawable/sendmessage"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/send_icon_foreground"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
