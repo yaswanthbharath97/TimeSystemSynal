@@ -32,9 +32,11 @@ public class ChatFragment extends Fragment  {
 
     RecyclerViewAdapter adapter;
     RecyclerView recyclerView1;
+    ContactViewModel contactViewModel;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       contactViewModel = new ViewModelProvider(this).get(ContactViewModel.class);
     }
 
 
@@ -43,20 +45,21 @@ public class ChatFragment extends Fragment  {
     {
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false);
-
+       View view=inflater.inflate(R.layout.fragment_chat, container, false);
+       recyclerView1=view.findViewById(R.id.recyclerview);
+       return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView recyclerView1=(RecyclerView)view.findViewById(R.id.recyclerview);
+
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity());
         recyclerView1.setLayoutManager(layoutManager);
         adapter=new RecyclerViewAdapter(getActivity());
         recyclerView1.setAdapter(adapter);
-        ContactViewModel contactViewModel = new ViewModelProvider(this).get(ContactViewModel.class);
+
         contactViewModel.getAllContacts().observe(requireActivity(), new Observer<List<Contact>>()
         {
             @Override
@@ -64,10 +67,13 @@ public class ChatFragment extends Fragment  {
             {
                 adapter.setContacts(contacts);
             }
+
         });
 
 
     }
+
+
 
 
 }

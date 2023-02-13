@@ -39,12 +39,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/app_bar_layout"
-        android:fitsSystemWindows="true"
-      >
 
         <com.ortiz.touchview.TouchImageView
             android:id="@+id/userImage"
@@ -56,7 +50,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/placeholderimage"
             tools:ignore="SpeakableTextPresentCheck"/>
-    </FrameLayout>
+
 
     <ProgressBar
         android:id="@+id/progress"
