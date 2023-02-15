@@ -84,7 +84,7 @@ public class MasterPage extends AppCompatActivity {
             }
         });
 
-        //keyboard resize
+
         recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
