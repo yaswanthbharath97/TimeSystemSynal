@@ -55,7 +55,6 @@ public class MessageRecyclerView extends RecyclerView.Adapter<MessageRecyclerVie
         holder.textView.setText(message.getMessage());
 
 
-
     }
 
     @Override

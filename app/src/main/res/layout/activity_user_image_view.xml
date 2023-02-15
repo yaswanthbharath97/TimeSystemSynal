@@ -48,6 +48,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/UserProfile"
             android:scaleType="fitCenter"
+            android:layout_below="@id/app_bar_layout"
             android:src="@drawable/placeholderimage"
             tools:ignore="SpeakableTextPresentCheck"/>
 

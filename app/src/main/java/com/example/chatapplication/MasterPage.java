@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.annotation.SuppressLint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,6 +20,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,6 +41,8 @@ public class MasterPage extends AppCompatActivity {
 
 
     private static final String TAG = "ChatView";
+
+
     Toolbar toolbar;
 
     EditText editText;
@@ -67,12 +74,29 @@ public class MasterPage extends AppCompatActivity {
         MessageViewModel messageViewModel=new ViewModelProvider(this).get(MessageViewModel.class);
         messageAdapter=new MessageRecyclerView(messageViewModel.getAllMessages());
         recyclerView.setAdapter(messageAdapter);
-        recyclerView.scrollToPosition(messageAdapter.getItemCount()-1);
+
         messageViewModel.getAllMessages().observe(this, new Observer<List<Message>>() {
             @Override
             public void onChanged(List<Message> messages) {
                 messageAdapter.setMessage(messages);
+                recyclerView.scrollToPosition(messages.size()-1);
 
+            }
+        });
+
+        //keyboard resize
+        recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                Rect r=new Rect();
+                recyclerView.getWindowVisibleDisplayFrame(r);
+                int screenHeight=recyclerView.getRootView().getHeight();
+                int keypadHeight=screenHeight-r.bottom;
+
+                if(keypadHeight>screenHeight * 0.15)
+                {
+                    recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount()-1);
+                }
             }
         });
 
@@ -113,4 +137,10 @@ public class MasterPage extends AppCompatActivity {
                 .into(imageView);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.masterpage_menu,menu);
+        return true;
+    }
 }
