@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserImageView">
+    tools:context=".UserImageView"
+    android:background="#000000">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -20,7 +21,7 @@
             android:layout_height="?actionBarSize"
             android:layout_margin="0dp"
             android:fitsSystemWindows="true"
-            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+             android:background="@color/black"
             app:contentInsetEnd="0dp"
             app:contentInsetLeft="0dp"
             app:contentInsetRight="0dp"
@@ -33,19 +34,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_semibold"
-                android:textColor="#fff"
+                android:textColor="#ffff"
                 android:textSize="15sp" />
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
 
-        <com.ortiz.touchview.TouchImageView
+        <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/userImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:adjustViewBounds="true"
+
             android:contentDescription="@string/UserProfile"
             android:scaleType="fitCenter"
             android:layout_below="@id/app_bar_layout"
