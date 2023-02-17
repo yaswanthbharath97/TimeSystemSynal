@@ -6,10 +6,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.res.Resources;
 import android.icu.text.CaseMap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -62,7 +64,7 @@ public class UserImageView extends AppCompatActivity {
         Picasso.get().
                  load(Imageurl)
                 .placeholder(R.drawable.placeholderimage).fit()
-                 .centerInside()
+
                  .into(image,new Callback() {
                     @Override
                     public void onSuccess() {
@@ -77,6 +79,29 @@ public class UserImageView extends AppCompatActivity {
                     }
                 });
 
+       /* image.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+
+                int screenwidth= Resources.getSystem().getDisplayMetrics().widthPixels;
+                int screenheight= Resources.getSystem().getDisplayMetrics().heightPixels;
+                int imagewidth=image.getDrawable().getIntrinsicWidth();
+                int imageheight=image.getDrawable().getIntrinsicHeight();
+                float scale=Math.min((float) screenwidth/imagewidth,(float)screenheight/imageheight);
+
+                int x=(int)((screenwidth-imagewidth*scale)/2);
+                int y=(int)((screenheight-imageheight*scale)/2);
+
+                image.setTranslationX(x);
+                image.setTranslationY(y);
+                image.setScaleX(scale);
+                image.setScaleY(scale);
+
+                image.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+
+            }
+        });*/
 
 
     }
