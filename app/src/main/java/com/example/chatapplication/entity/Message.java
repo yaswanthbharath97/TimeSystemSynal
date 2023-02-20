@@ -11,8 +11,17 @@ public class Message {
     @PrimaryKey(autoGenerate = true)
     public int id;
 
+    public long getTimestamp() {
+        return timestamp;
+    }
 
-    private String message;
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public long timestamp;
+
+    public String message;
 
 
     public int getContactId() {
@@ -24,7 +33,7 @@ public class Message {
     }
 
     @ColumnInfo(index = true)
-    private int contactId;
+    public int contactId;
 
 
 

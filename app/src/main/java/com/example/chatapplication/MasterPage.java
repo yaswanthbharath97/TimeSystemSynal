@@ -95,7 +95,7 @@ public class MasterPage extends AppCompatActivity {
 
                 if(keypadHeight>screenHeight * 0.15)
                 {
-                    recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount()-1);
+                    recyclerView.scrollToPosition(Objects.requireNonNull(recyclerView.getAdapter()).getItemCount()-1);
                 }
             }
         });

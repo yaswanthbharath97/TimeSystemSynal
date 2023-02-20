@@ -82,6 +82,7 @@
             android:hint="@string/Message"
             android:drawableStart="@drawable/emojii"
             android:drawableEnd="@drawable/camera"
+
             android:drawablePadding="5dp"
             android:inputType="textMultiLine"
             android:maxLines="5"
