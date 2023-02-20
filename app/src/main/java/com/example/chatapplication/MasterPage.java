@@ -133,7 +133,6 @@ public class MasterPage extends AppCompatActivity {
         Picasso.get().
                 load(Imageurl).placeholder(R.drawable.placeholderimage)
                 .fit()
-                .centerInside()
                 .into(imageView);
     }
 

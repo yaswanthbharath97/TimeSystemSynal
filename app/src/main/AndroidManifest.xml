@@ -30,7 +30,7 @@
         <activity
             android:name=".UserImageView"
             android:exported="false"
-            android:theme="@style/Theme.MasterPage"
+            android:theme="@style/Theme.ProfileView"
             android:parentActivityName=".Dashboard"
             android:screenOrientation="portrait">
             <meta-data
@@ -59,7 +59,7 @@
             android:name=".SplashScreen"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SplashScreen">
+            android:theme="@style/Theme.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
