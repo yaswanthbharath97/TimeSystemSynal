@@ -131,7 +131,7 @@ public class MasterPage extends AppCompatActivity {
         CircleImageView imageView = findViewById(R.id.profile_image);
         username.setText(title);
         Picasso.get().
-                load(Imageurl).placeholder(R.drawable.placeholderimage)
+                load(Imageurl)
                 .fit()
                 .into(imageView);
     }

@@ -63,7 +63,7 @@ public class UserImageView extends AppCompatActivity {
         textView.setText(title);
         Picasso.get().
                  load(Imageurl)
-                .placeholder(R.drawable.placeholderimage).resize(400,350)
+                .placeholder(R.drawable.imageplaceholder).resize(500,500)
                  .into(image,new Callback() {
                     @Override
                     public void onSuccess() {

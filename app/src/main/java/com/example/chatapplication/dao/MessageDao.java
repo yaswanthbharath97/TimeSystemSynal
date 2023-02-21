@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Embedded;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Relation;
 import androidx.room.Transaction;
@@ -29,6 +30,7 @@ public interface MessageDao {
     void insert(Message message);
 
 
+
     static class MessageWithContact{
 
         @Embedded
@@ -36,10 +38,9 @@ public interface MessageDao {
 
         @Relation(parentColumn = "id",entityColumn = "contactId",entity = Message.class)
         public List<Message>messages;
-        
+
 
     }
-
 
 
 }
