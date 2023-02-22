@@ -81,6 +81,7 @@ public class MasterPage extends AppCompatActivity {
                 messageAdapter.setMessage(messages);
                 recyclerView.scrollToPosition(messages.size()-1);
 
+
             }
         });
 
@@ -95,9 +96,11 @@ public class MasterPage extends AppCompatActivity {
 
                 if(keypadHeight>screenHeight * 0.15)
                 {
-                    recyclerView.scrollToPosition(Objects.requireNonNull(recyclerView.getAdapter()).getItemCount()-1);
+                    recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount()-1);
                 }
+
             }
+
         });
 
 
@@ -106,6 +109,8 @@ public class MasterPage extends AppCompatActivity {
            @Override
            public void onClick(View v) {
                Message message=new Message(editText.getText().toString());
+               message.setSender_id(message.getSender_id());
+               message.setMessage(message.getMessage());
                messageViewModel.insert(message);
                messageAdapter.notifyDataSetChanged();
                editText.setText("");

@@ -16,29 +16,26 @@ public class Message {
     public String message;
 
     public long sender_id;
+    public long getSender_id() {
+        return sender_id;
+    }
+
+    public void setSender_id(long sender_id) {
+        this.sender_id = sender_id;
+    }
 
 
-    public long getTimestamp() {
+
+
+    public long getTimestamp()
+    {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(long timestamp)
+    {
         this.timestamp = timestamp;
     }
-
-
-
-    public int getContactId() {
-        return contactId;
-    }
-
-    public void setContactId(int contactId) {
-        this.contactId = contactId;
-    }
-
-    @ColumnInfo(index = true)
-    public int contactId;
-
 
 
     public Message(String message) {
@@ -47,21 +44,25 @@ public class Message {
 
     }
 
-    public void setMessage(String message) {
+    public void setMessage(String message)
+    {
         this.message = message;
     }
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
 
 
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
-    public String getMessage() {
+    public String getMessage()
+    {
         return message;
     }
 

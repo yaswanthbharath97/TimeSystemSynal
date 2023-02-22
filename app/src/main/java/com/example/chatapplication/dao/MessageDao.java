@@ -36,7 +36,7 @@ public interface MessageDao {
         @Embedded
         public Contact contact;
 
-        @Relation(parentColumn = "id",entityColumn = "contactId",entity = Message.class)
+        @Relation(parentColumn = "id",entityColumn = "sender_id",entity = Message.class)
         public List<Message>messages;
 
 
