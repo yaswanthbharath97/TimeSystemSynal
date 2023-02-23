@@ -86,7 +86,7 @@ public class MasterPage extends AppCompatActivity {
         });
 
 
-        recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+      /*  recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 Rect r=new Rect();
@@ -102,6 +102,50 @@ public class MasterPage extends AppCompatActivity {
             }
 
         });
+*/
+        class SoftKeyboardStateWatcher implements ViewTreeObserver.OnGlobalLayoutListener {
+
+            private final View rootView;
+            private final int previousHeight = 0;
+            private SoftKeyboardStateListener listener;
+
+            public SoftKeyboardStateWatcher(View rootView) {
+                this.rootView = rootView;
+                rootView.getViewTreeObserver().addOnGlobalLayoutListener(this);
+            }
+
+            public void setListener(SoftKeyboardStateListener listener) {
+                this.listener = listener;
+            }
+
+            @Override
+            public void onGlobalLayout() {
+                Rect r = new Rect();
+                rootView.getWindowVisibleDisplayFrame(r);
+
+                int screenHeight = rootView.getRootView().getHeight();
+                int keypadHeight = screenHeight - r.bottom;
+
+                if (keypadHeight > screenHeight * 0.15) {
+                    if (listener != null) {
+                        listener.onSoftKeyboardOpened(keypadHeight);
+                    }
+                } else {
+                    if (listener != null) {
+                        listener.onSoftKeyboardClosed();
+                    }
+                }
+            }
+
+            public interface SoftKeyboardStateListener {
+                void onSoftKeyboardOpened(int keyboardHeight);
+
+                void onSoftKeyboardClosed();
+            }
+            public void onSoftKeyboardOpened(int keyboardHeight) {
+                recyclerView.scrollToPosition(Objects.requireNonNull(recyclerView.getAdapter()).getItemCount()-1);
+            }
+        }
 
 
        imageButton.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +163,10 @@ public class MasterPage extends AppCompatActivity {
 
        });
 
+
     }
+
+
 
     private void getIncomingIntent() {
         Log.d(TAG, "getIncomingIntent:checking for incoming intent");
