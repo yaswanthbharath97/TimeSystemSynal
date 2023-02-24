@@ -86,23 +86,8 @@ public class MasterPage extends AppCompatActivity {
         });
 
 
-      /*  recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                Rect r=new Rect();
-                recyclerView.getWindowVisibleDisplayFrame(r);
-                int screenHeight=recyclerView.getRootView().getHeight();
-                int keypadHeight=screenHeight-r.bottom;
+     //screen reduces when keyboard appears scrolling
 
-                if(keypadHeight>screenHeight * 0.15)
-                {
-                    recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount()-1);
-                }
-
-            }
-
-        });
-*/
         class SoftKeyboardStateWatcher implements ViewTreeObserver.OnGlobalLayoutListener {
 
             private final View rootView;
