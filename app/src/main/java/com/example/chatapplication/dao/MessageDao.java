@@ -24,8 +24,8 @@ public interface MessageDao {
     LiveData<List<Message>>getAll();
 
 
-   // @Query("SELECT * FROM chatMessage_table WHERE senderId = :userId")
-   // List<Message> getMessagesForUser(int userId);
+   @Query("SELECT * FROM chatMessage_table WHERE sender_id =:sender_id")
+   List<Message> getMessagesForUser(int sender_id);
     @Insert
     void insert(Message message);
 
@@ -36,7 +36,7 @@ public interface MessageDao {
         @Embedded
         public Contact contact;
 
-        @Relation(parentColumn = "id",entityColumn = "sender_id",entity = Message.class)
+        @Relation(parentColumn = "id",entityColumn = "sender_id",entity =Message.class)
         public List<Message>messages;
 
 

@@ -1,8 +1,6 @@
 package com.example.chatapplication;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.annotation.SuppressLint;
 import android.graphics.Rect;
@@ -14,13 +12,9 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,8 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chatapplication.entity.Message;
 import com.example.chatapplication.viewmodel.MessageViewModel;
-import com.google.android.material.appbar.AppBarLayout;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -50,6 +42,8 @@ public class MasterPage extends AppCompatActivity {
     ImageButton imageButton;
 
     RecyclerView recyclerView;
+
+
 
     MessageRecyclerView messageAdapter;
 
@@ -86,15 +80,35 @@ public class MasterPage extends AppCompatActivity {
         });
 
 
-     //screen reduces when keyboard appears scrolling
+         recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                Rect r=new Rect();
+                recyclerView.getWindowVisibleDisplayFrame(r);
+                int screenHeight=recyclerView.getRootView().getHeight();
+                int keypadHeight=screenHeight-r.bottom;
 
-        class SoftKeyboardStateWatcher implements ViewTreeObserver.OnGlobalLayoutListener {
+                if(keypadHeight>screenHeight * 0.15)
+                {
 
-            private final View rootView;
+                    recyclerView.smoothScrollToPosition(Objects.requireNonNull(recyclerView.getAdapter()).getItemCount() - 1);
+
+                }
+
+            }
+
+        });
+
+
+ // screen reduces when keyboard appears scrolling
+
+     /*   class SoftKeyboardStateWatcher implements ViewTreeObserver.OnGlobalLayoutListener {
+
+            private View rootView ;
             private final int previousHeight = 0;
             private SoftKeyboardStateListener listener;
 
-            public SoftKeyboardStateWatcher(View rootView) {
+            public SoftKeyboardStateWatcher(View rootView, RecyclerView recyclerView) {
                 this.rootView = rootView;
                 rootView.getViewTreeObserver().addOnGlobalLayoutListener(this);
             }
@@ -102,6 +116,7 @@ public class MasterPage extends AppCompatActivity {
             public void setListener(SoftKeyboardStateListener listener) {
                 this.listener = listener;
             }
+
 
             @Override
             public void onGlobalLayout() {
@@ -111,12 +126,17 @@ public class MasterPage extends AppCompatActivity {
                 int screenHeight = rootView.getRootView().getHeight();
                 int keypadHeight = screenHeight - r.bottom;
 
-                if (keypadHeight > screenHeight * 0.15) {
+                if (keypadHeight > screenHeight * 0.15)
+                {
                     if (listener != null) {
                         listener.onSoftKeyboardOpened(keypadHeight);
+                        recyclerView.scrollToPosition(Objects.requireNonNull(recyclerView.getAdapter()).getItemCount()-1);
                     }
-                } else {
-                    if (listener != null) {
+                }
+                else
+                {
+                    if (listener != null)
+                    {
                         listener.onSoftKeyboardClosed();
                     }
                 }
@@ -127,11 +147,10 @@ public class MasterPage extends AppCompatActivity {
 
                 void onSoftKeyboardClosed();
             }
-            public void onSoftKeyboardOpened(int keyboardHeight) {
-                recyclerView.scrollToPosition(Objects.requireNonNull(recyclerView.getAdapter()).getItemCount()-1);
-            }
-        }
 
+
+        }
+*/
 
        imageButton.setOnClickListener(new View.OnClickListener() {
            @SuppressLint("NotifyDataSetChanged")
