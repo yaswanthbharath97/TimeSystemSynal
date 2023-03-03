@@ -3,6 +3,7 @@ package com.example.chatapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -43,7 +45,7 @@ public class MasterPage extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
-
+    private final boolean isKeyboardVisible = false;
 
     MessageRecyclerView messageAdapter;
 
@@ -80,7 +82,8 @@ public class MasterPage extends AppCompatActivity {
         });
 
 
-         recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+        recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 Rect r=new Rect();
@@ -91,41 +94,36 @@ public class MasterPage extends AppCompatActivity {
                 if(keypadHeight>screenHeight * 0.15)
                 {
 
-                    recyclerView.smoothScrollToPosition(Objects.requireNonNull(recyclerView.getAdapter()).getItemCount() - 1);
+                    recyclerView.smoothScrollToPosition(messageAdapter.getItemCount()-1);
 
                 }
+                recyclerView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
 
             }
 
         });
 
 
- // screen reduces when keyboard appears scrolling
+        // screen reduces when keyboard appears scrolling
 
      /*   class SoftKeyboardStateWatcher implements ViewTreeObserver.OnGlobalLayoutListener {
-
             private View rootView ;
             private final int previousHeight = 0;
             private SoftKeyboardStateListener listener;
-
             public SoftKeyboardStateWatcher(View rootView, RecyclerView recyclerView) {
                 this.rootView = rootView;
                 rootView.getViewTreeObserver().addOnGlobalLayoutListener(this);
             }
-
             public void setListener(SoftKeyboardStateListener listener) {
                 this.listener = listener;
             }
-
-
             @Override
             public void onGlobalLayout() {
                 Rect r = new Rect();
                 rootView.getWindowVisibleDisplayFrame(r);
-
                 int screenHeight = rootView.getRootView().getHeight();
                 int keypadHeight = screenHeight - r.bottom;
-
                 if (keypadHeight > screenHeight * 0.15)
                 {
                     if (listener != null) {
@@ -141,32 +139,27 @@ public class MasterPage extends AppCompatActivity {
                     }
                 }
             }
-
             public interface SoftKeyboardStateListener {
                 void onSoftKeyboardOpened(int keyboardHeight);
-
                 void onSoftKeyboardClosed();
             }
-
-
         }
 */
 
-       imageButton.setOnClickListener(new View.OnClickListener() {
-           @SuppressLint("NotifyDataSetChanged")
-           @Override
-           public void onClick(View v) {
-               Message message=new Message(editText.getText().toString());
-               message.setSender_id(message.getSender_id());
-               message.setMessage(message.getMessage());
-               messageViewModel.insert(message);
-               messageAdapter.notifyDataSetChanged();
-               editText.setText("");
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onClick(View v) {
+                Message message=new Message(editText.getText().toString());
+                message.setSender_id(message.getSender_id());
+                message.setMessage(message.getMessage());
+                messageViewModel.insert(message);
+                messageAdapter.notifyDataSetChanged();
+                editText.setText("");
 
-           }
+            }
 
-       });
-
+        });
 
     }
 

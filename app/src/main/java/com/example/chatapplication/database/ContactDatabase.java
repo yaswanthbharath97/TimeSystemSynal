@@ -26,7 +26,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
-@Database(entities = {Contact.class, Message.class},version =1)
+@Database(entities = {Contact.class, Message.class},version =1,exportSchema = false)
 public abstract class   ContactDatabase extends RoomDatabase
 {
 
@@ -46,12 +46,12 @@ public abstract class   ContactDatabase extends RoomDatabase
         if (instance == null)
         {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    ContactDatabase.class,"contact_database")
+                            ContactDatabase.class,"contact_database")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallBack)
                     .build();
         }
-      return instance;
+        return instance;
     }
 
     private static final RoomDatabase.Callback roomCallBack=new RoomDatabase.Callback()
@@ -120,22 +120,22 @@ public abstract class   ContactDatabase extends RoomDatabase
         BufferedReader reader=new BufferedReader(new InputStreamReader(in));
         String line;
 
-      try {
-          while ((line= reader.readLine())!=null)
-          {
-              builder.append(line);
-          }
+        try {
+            while ((line= reader.readLine())!=null)
+            {
+                builder.append(line);
+            }
 
-          JSONObject jsonObject=new JSONObject(builder.toString());
-          return jsonObject.getJSONArray("contacts");
+            JSONObject jsonObject=new JSONObject(builder.toString());
+            return jsonObject.getJSONArray("contacts");
 
-      }
-      catch (IOException |JSONException e) {
-          e.printStackTrace();
+        }
+        catch (IOException |JSONException e) {
+            e.printStackTrace();
 
-      }
+        }
 
-     return null;
+        return null;
 
     }
 

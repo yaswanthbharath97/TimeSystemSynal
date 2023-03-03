@@ -32,10 +32,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
 
-    public RecyclerViewAdapter( Context context)
+    public RecyclerViewAdapter( Context context,List<Contact>contact)
     {
         super();
         this.context = context;
+        this.contacts=contact;
     }
 
 

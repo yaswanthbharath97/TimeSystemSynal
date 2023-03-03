@@ -19,14 +19,14 @@ public interface MessageDao {
 
 
 
-   @Transaction
+    @Transaction
     @Query("SELECT * FROM chatMessage_table")
     LiveData<List<Message>>getAll();
 
 
-   @Query("SELECT * FROM chatMessage_table WHERE sender_id =:sender_id")
-   List<Message> getMessagesForUser(int sender_id);
-    @Insert
+  //  @Query("SELECT * FROM chatMessage_table WHERE sender_id =:sender_id")
+   // List<Message> getMessagesForUser(int sender_id);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Message message);
 
 

@@ -10,12 +10,16 @@ import androidx.room.PrimaryKey;
 public class Message {
 
     @PrimaryKey(autoGenerate = true)
+
     public int id;
+
     public long timestamp;
+
 
     public String message;
 
     public long sender_id;
+
     public long getSender_id() {
         return sender_id;
     }
@@ -49,10 +53,7 @@ public class Message {
         this.message = message;
     }
 
-    public void setId(int id)
-    {
-        this.id = id;
-    }
+
 
 
 

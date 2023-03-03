@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-public class ContactRepository {
+public class   ContactRepository {
 
     private final LiveData<List<Contact>>allContacts;
     private final ContactDao contactDao;
