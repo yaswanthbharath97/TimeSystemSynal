@@ -26,6 +26,11 @@ public class MessageViewModel extends AndroidViewModel {
         messageRepository.insert(message);
     }
 
+    public void delete(Message message)
+    {
+       messageRepository.delete(message);
+    }
+
 
     public LiveData<List<Message>> getAllMessages()
     {

@@ -29,15 +29,23 @@
             app:contentInsetStartWithNavigation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+            <ImageView
+                android:id="@+id/backbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/backbutton"
+                android:contentDescription="@string/back_button_description"
+                />
+
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_gravity="start"
-                android:padding="2dp"
                 android:src="@drawable/defaultprofile"
-                app:civ_circle_background_color="@color/white"/>
+                android:background="@drawable/circleimage"
+                />
 
             <TextView
                 android:id="@+id/username"
@@ -46,7 +54,7 @@
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/open_sans_semibold"
                 android:text="@string/text"
-                android:textColor="#fff"
+                android:textColor="#ffffff"
                 android:textSize="15sp" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -56,12 +64,12 @@
         android:id="@+id/chatlist"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="0dp"
-        android:layout_below="@id/bar_layout"
         android:layout_above="@id/linearLayout1"
+        android:layout_below="@id/bar_layout"
+        android:layout_marginTop="-16dp"
+        android:layout_marginBottom="16dp"
         app:layoutManager="LinearLayoutManager"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-       />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -83,7 +91,6 @@
             android:hint="@string/Message"
             android:drawableStart="@drawable/emojii"
             android:drawableEnd="@drawable/camera"
-
             android:drawablePadding="5dp"
             android:inputType="textMultiLine"
             android:maxLines="5"

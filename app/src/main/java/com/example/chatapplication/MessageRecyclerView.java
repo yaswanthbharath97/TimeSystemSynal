@@ -21,18 +21,12 @@ public class MessageRecyclerView extends RecyclerView.Adapter<MessageRecyclerVie
 
       private static final String Tag="MessageRecyclerAdapter";
 
-      private  Context context;
-       private  List<Message> mMessageList=new ArrayList<Message>();
+
+      private  List<Message> mMessageList=new ArrayList<Message>();
 
 
 
 
-
-    public MessageRecyclerView(Context context, List<Message> mMessageList) {
-
-        this.context = context;
-        this.mMessageList=mMessageList;
-    }
 
 
 
@@ -52,7 +46,7 @@ public class MessageRecyclerView extends RecyclerView.Adapter<MessageRecyclerVie
     public void onBindViewHolder(@NonNull MessageRecyclerView.ViewHolder holder, int position)
     {
      Message message=mMessageList.get(position);
-        holder.textView.setText(message.getMessage());
+     holder.textView.setText(message.getMessage());
 
 
     }

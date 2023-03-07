@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -36,6 +38,7 @@ public class MasterPage extends AppCompatActivity {
 
     private static final String TAG = "ChatView";
 
+    ImageView imageView;
 
     Toolbar toolbar;
 
@@ -56,11 +59,9 @@ public class MasterPage extends AppCompatActivity {
         setContentView(R.layout.activity_master_page);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         getIncomingIntent();
-
+        imageView=findViewById(R.id.backbutton);
         editText=findViewById(R.id.entermessage);
         imageButton=findViewById(R.id.sendButton);
         recyclerView=findViewById(R.id.chatlist);
@@ -81,7 +82,13 @@ public class MasterPage extends AppCompatActivity {
             }
         });
 
-
+       imageView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent=new Intent(MasterPage.this,Dashboard.class);
+               startActivity(intent);
+           }
+       });
 
         recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -98,7 +105,6 @@ public class MasterPage extends AppCompatActivity {
 
                 }
                 recyclerView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-
 
             }
 
@@ -150,12 +156,29 @@ public class MasterPage extends AppCompatActivity {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
-                Message message=new Message(editText.getText().toString());
-                message.setSender_id(message.getSender_id());
-                message.setMessage(message.getMessage());
-                messageViewModel.insert(message);
-                messageAdapter.notifyDataSetChanged();
-                editText.setText("");
+                if(editText.getText().toString().equals(""))
+                {
+                    editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                        @Override
+                        public void onFocusChange(View v, boolean hasFocus) {
+                            if (!hasFocus) {
+                                String text = editText.getText().toString().trim();
+                                if (text.isEmpty()) {
+                                    editText.setError("Background cannot be empty.");
+                                }
+                            }
+                        }
+                    });
+                }
+                else
+                {
+                    Message message = new Message(editText.getText().toString());
+                    message.setSender_id(message.getSender_id());
+                    message.setMessage(message.getMessage());
+                    messageViewModel.insert(message);
+                    messageAdapter.notifyDataSetChanged();
+                    editText.setText("");
+                }
 
             }
 
@@ -181,7 +204,7 @@ public class MasterPage extends AppCompatActivity {
         username.setText(title);
         Picasso.get().
                 load(Imageurl)
-                .fit()
+                .resize(300,300)
                 .into(imageView);
     }
 

@@ -23,10 +23,14 @@ public class MessageRepository {
 
     }
 
-    public void insert(Message message) {
+    public void insert(Message message)
+    {
         new InsertMessageAsyncTask(messageDao).execute(message);
     }
-
+public  void delete(Message message)
+{
+    new DeleteMessageAsyncTask(messageDao).execute(message);
+}
     public LiveData<List<Message>> getAllMessages() {
         return allMessages;
     }
@@ -45,6 +49,21 @@ public class MessageRepository {
         }
 
 
+    }
+
+    private static class DeleteMessageAsyncTask extends AsyncTask<Message,Void,Void>
+    {
+        private final MessageDao messageDao;
+
+
+        public DeleteMessageAsyncTask(MessageDao messageDao) {
+            this.messageDao = messageDao;
+        }
+        @Override
+        protected Void doInBackground(Message... messages) {
+            messageDao.delete(messages[0]);
+            return null;
+        }
     }
 }
 
