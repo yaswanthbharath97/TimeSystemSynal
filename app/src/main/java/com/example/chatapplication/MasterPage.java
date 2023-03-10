@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -100,9 +101,29 @@ public class MasterPage extends AppCompatActivity {
 
                 if(keypadHeight>screenHeight * 0.15)
                 {
+                    int lastItemHeight = 0;
+                    if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
+                        LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                        View lastItem = layoutManager.findViewByPosition(messageAdapter.getItemCount()-1);
+                        if (lastItem != null) {
+                            lastItemHeight = lastItem.getHeight();
+                        }
+                    }
+
+                    // Adjust the height of the RecyclerView to make sure the last item is visible
+                    ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
+                    params.height = screenHeight - keypadHeight - lastItemHeight;
+                    recyclerView.setLayoutParams(params);
+
 
                     recyclerView.smoothScrollToPosition(messageAdapter.getItemCount()-1);
 
+                }
+                else {
+                    // Reset the height of the RecyclerView to its original value
+                    ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
+                    params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                    recyclerView.setLayoutParams(params);
                 }
                 recyclerView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 

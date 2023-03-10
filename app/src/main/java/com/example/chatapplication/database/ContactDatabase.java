@@ -26,7 +26,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
-@Database(entities = {Contact.class, Message.class},version =1,exportSchema = false)
+@Database(entities = {Contact.class, Message.class},version =1)
 public abstract class   ContactDatabase extends RoomDatabase
 {
 

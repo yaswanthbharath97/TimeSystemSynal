@@ -20,6 +20,8 @@ public class Message {
 
     public long sender_id;
 
+
+
     public long getSender_id() {
         return sender_id;
     }

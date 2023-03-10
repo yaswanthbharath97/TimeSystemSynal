@@ -2,6 +2,7 @@ package com.example.chatapplication.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Embedded;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -28,6 +29,7 @@ public interface MessageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Message message);
 
+    @Delete
     void delete(Message message);
 
     static class MessageWithContact {

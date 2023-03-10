@@ -66,8 +66,8 @@
         android:layout_height="0dp"
         android:layout_above="@id/linearLayout1"
         android:layout_below="@id/bar_layout"
-        android:layout_marginTop="-16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         app:layoutManager="LinearLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
@@ -99,7 +99,6 @@
             android:paddingStart="10dp"
             android:singleLine="false"
             android:layout_gravity="bottom"
-            android:fadeScrollbars="false"
             tools:ignore="RtlSymmetry,TouchTargetSizeCheck"
             />
 

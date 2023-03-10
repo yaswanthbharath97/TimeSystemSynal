@@ -4,34 +4,34 @@
     android:id="@+id/parent_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingHorizontal="12dp"
     android:layout_marginTop="10dp"
+    android:orientation="horizontal"
     android:padding="8dp"
+    android:paddingHorizontal="12dp"
 
-  >
-    <androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_centerVertical="true"
     >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+      >
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image"
-            app:civ_border_overlay="true"
             android:layout_width="54dp"
             android:layout_height="54dp"
             android:layout_marginEnd="14dp"
             android:src="@drawable/defaultprofile"
             app:civ_border_color="@color/white"
-        />
+            app:civ_border_overlay="true" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginStart="68dp"
-            android:layout_marginTop="4dp">
+            android:layout_marginTop="4dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/list_text"
@@ -41,7 +41,7 @@
                 android:fontFamily="@font/open_sans_semibold"
                 android:text="@string/ram"
                 android:textColor="@color/black"
-                android:textSize="17sp"/>
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/phone1"
@@ -53,19 +53,19 @@
                 android:textSize="15sp" />
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="end">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end">
 
-        <TextView
-            android:id="@+id/timestamp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="6dp"
-            android:textSize="13sp"
-            android:text="@string/_9_11_am"/>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="6dp"
+                android:text="@string/_9_11_am"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
