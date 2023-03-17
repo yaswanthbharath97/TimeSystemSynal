@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,13 @@ public class ChatFragment extends Fragment {
     List<Contact> contacts = new ArrayList<>();
 
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        contactViewModel = new ViewModelProvider(this).get(ContactViewModel.class);
+    }
+
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -51,30 +59,20 @@ public class ChatFragment extends Fragment {
         recyclerView1.setLayoutManager(layoutManager);
         adapter = new RecyclerViewAdapter(context, contacts);
         recyclerView1.setAdapter(adapter);
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-
-        super.onViewCreated(view, savedInstanceState);
-
-
-        contactViewModel = new ViewModelProvider(this).get(ContactViewModel.class);
         contactViewModel.getAllContacts().observe(requireActivity(), new Observer<List<Contact>>()
         {
-            @SuppressLint("NotifyDataSetChanged")
             @Override
 
             public void onChanged(List<Contact> contacts) {
                 adapter.setContacts(contacts);
-                adapter.notifyDataSetChanged();
             }
 
         });
 
 
+        return view;
     }
+
 
 
 }

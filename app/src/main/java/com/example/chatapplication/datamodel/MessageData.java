@@ -5,10 +5,21 @@ public class MessageData {
     private int senderId;
     private String content;
 
-    public MessageData(int id, int senderId, String content, long timestamp) {
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    private boolean isSelected;
+
+    public MessageData(int id, int senderId, String content, boolean isSelected, long timestamp) {
         this.id = id;
         this.senderId = senderId;
         this.content = content;
+        this.isSelected = isSelected;
         this.timestamp = timestamp;
     }
 

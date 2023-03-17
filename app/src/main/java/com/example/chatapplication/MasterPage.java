@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -36,6 +37,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MasterPage extends AppCompatActivity {
 
+    private MenuItem mDeleteMenuItem;
 
     private static final String TAG = "ChatView";
 
@@ -52,6 +54,7 @@ public class MasterPage extends AppCompatActivity {
     private final boolean isKeyboardVisible = false;
 
     MessageRecyclerView messageAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -102,8 +105,7 @@ public class MasterPage extends AppCompatActivity {
                 if(keypadHeight>screenHeight * 0.15)
                 {
                     int lastItemHeight = 0;
-                    if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
-                        LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                    if (recyclerView.getLayoutManager() instanceof LinearLayoutManager layoutManager) {
                         View lastItem = layoutManager.findViewByPosition(messageAdapter.getItemCount()-1);
                         if (lastItem != null) {
                             lastItemHeight = lastItem.getHeight();
@@ -229,10 +231,13 @@ public class MasterPage extends AppCompatActivity {
                 .into(imageView);
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.masterpage_menu,menu);
+        mDeleteMenuItem=menu.findItem(R.id.menu_delete);
+        mDeleteMenuItem.setVisible(false);
         return true;
     }
 }

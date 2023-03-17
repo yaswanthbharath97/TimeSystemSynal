@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -38,6 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.context = context;
         this.contacts=contact;
     }
+
 
 
     @NonNull
@@ -103,13 +105,47 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
+
     @SuppressLint("NotifyDataSetChanged")
-    public void setContacts(List<Contact> contacts)
+    public void setContacts(List<Contact>newcontacts)
     {
-        this.contacts = contacts;
-        notifyDataSetChanged();
+
+        DiffUtil.DiffResult diffResult=DiffUtil.calculateDiff(new ContactsDiffUtilCallback(contacts, newcontacts));
+        contacts.clear();
+        contacts.addAll(newcontacts);
+        diffResult.dispatchUpdatesTo(this);
+
     }
 
+    public static class ContactsDiffUtilCallback extends DiffUtil.Callback {
+        private final List<Contact> oldContacts;
+        private final List<Contact> newContacts;
+
+        public ContactsDiffUtilCallback(List<Contact> oldContacts, List<Contact> newContacts) {
+            this.oldContacts = oldContacts;
+            this.newContacts = newContacts;
+        }
+
+        @Override
+        public int getOldListSize() {
+            return oldContacts.size();
+        }
+
+        @Override
+        public int getNewListSize() {
+            return newContacts.size();
+        }
+
+        @Override
+        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+            return oldContacts.get(oldItemPosition).getId() == newContacts.get(newItemPosition).getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+            return oldContacts.get(oldItemPosition).equals(newContacts.get(newItemPosition));
+        }
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
