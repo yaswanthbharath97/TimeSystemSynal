@@ -1,11 +1,8 @@
 package com.example.chatapplication.entity;
 
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import java.util.List;
 
 
 @Entity(tableName = "contact_table")
@@ -50,7 +47,7 @@ public class Contact
         this.id = id;
     }
 
-    public LiveData<List<Contact>> getId()
+    public int getId()
     {
         return id;
     }
