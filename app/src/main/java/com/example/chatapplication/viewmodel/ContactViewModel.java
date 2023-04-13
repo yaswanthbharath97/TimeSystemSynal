@@ -20,7 +20,7 @@ public class ContactViewModel extends AndroidViewModel
     {
         super(application);
         this.contactRepository=new ContactRepository(application);
-        this.allContacts=this.contactRepository.getAllContacts();
+        this.allContacts= (LiveData<List<Contact>>) this.contactRepository.getAllContacts();
     }
 
 
@@ -37,5 +37,7 @@ public class ContactViewModel extends AndroidViewModel
     {
         return allContacts;
     }
-
+    public LiveData<List<Contact>>  getContactById(long id) {
+        return contactRepository.getContactById(id);
+    }
 }

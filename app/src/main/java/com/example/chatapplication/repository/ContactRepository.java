@@ -9,8 +9,6 @@ import com.example.chatapplication.database.ContactDatabase;
 import com.example.chatapplication.entity.Contact;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
 public class   ContactRepository {
@@ -25,10 +23,12 @@ public class   ContactRepository {
     {
         ContactDatabase database=ContactDatabase.getInstance(application);
         contactDao= database.contactDao();
-        allContacts= contactDao.getAllContact();
+        allContacts= contactDao.getAllContacts();
     }
 
-
+    public LiveData<List<Contact>>  getContactById(long id) {
+        return contactDao.getContactById(id);
+    }
 
     public void insert(Contact contact)
     {

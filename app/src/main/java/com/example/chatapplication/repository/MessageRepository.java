@@ -5,46 +5,62 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.chatapplication.dao.ContactDao;
 import com.example.chatapplication.dao.MessageDao;
 import com.example.chatapplication.database.ContactDatabase;
+import com.example.chatapplication.entity.Contact;
 import com.example.chatapplication.entity.Message;
 
 import java.util.List;
 
 public class MessageRepository {
 
+    private final ContactDao contactDao;
     private final MessageDao messageDao;
     private final LiveData<List<Message>> allMessages;
 
     public MessageRepository(Application application) {
         ContactDatabase database = ContactDatabase.getInstance(application);
         messageDao = database.messageDao();
+        contactDao= database.contactDao();
         allMessages = messageDao.getAll();
 
     }
-
-    public void insert(Message message)
+    public LiveData<List<Message>> getMessagesBySenderId(long senderId)
     {
-        new InsertMessageAsyncTask(messageDao).execute(message);
+        return messageDao.getMessagesBySenderId(senderId);
     }
-public  void delete(Message message)
-{
-    new DeleteMessageAsyncTask(messageDao).execute(message);
-}
+    public void insert(Message message,long senderId)
+    {
+        new InsertMessageAsyncTask(messageDao,senderId,contactDao).execute(message);
+    }
+    public  void delete(Message message)
+    {
+        new DeleteMessageAsyncTask(messageDao).execute(message);
+    }
     public LiveData<List<Message>> getAllMessages() {
         return allMessages;
     }
 
     private static class InsertMessageAsyncTask extends AsyncTask<Message, Void, Void> {
         private final MessageDao messageDao;
+        private final long senderId;
 
-
-        public InsertMessageAsyncTask(MessageDao messageDao) {
+        private final ContactDao contactDao;
+        public InsertMessageAsyncTask(MessageDao messageDao, long senderId, ContactDao contactDao) {
             this.messageDao = messageDao;
+            this.senderId=senderId;
+            this.contactDao = contactDao;
         }
 
-        protected Void doInBackground(Message... messages) {
-            messageDao.insert(messages[0]);
+        protected Void doInBackground(Message... messages)
+        {
+            LiveData<List<Contact>> contactId = contactDao.getContactById(senderId);
+            if (contactId.getValue() != null)
+            {
+                messages[0].setSenderId(contactId.getValue().get(0).getId());
+                messageDao.insert(messages[0]);
+            }
             return null;
         }
 
@@ -60,10 +76,11 @@ public  void delete(Message message)
             this.messageDao = messageDao;
         }
         @Override
-        protected Void doInBackground(Message... messages) {
-            messageDao.delete(messages[0]);
+        protected Void doInBackground(Message... messages)
+        {
+            long contactId = messages[0].getSenderId();
+            messageDao.deleteMessagesForContact(contactId);
             return null;
         }
     }
 }
-

@@ -5,11 +5,13 @@ public class MessageData {
     private int senderId;
     private String content;
 
-    public boolean isSelected() {
+    public boolean isSelected()
+    {
         return isSelected;
     }
 
-    public void setSelected(boolean selected) {
+    public void setSelected(boolean selected)
+    {
         isSelected = selected;
     }
 
@@ -25,35 +27,43 @@ public class MessageData {
 
     private long timestamp;
 
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
-    public int getSenderId() {
+    public int getSenderId()
+    {
         return senderId;
     }
 
-    public void setSenderId(int senderId) {
+    public void setSenderId(int senderId)
+    {
         this.senderId = senderId;
     }
 
-    public String getContent() {
+    public String getContent()
+    {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(String content)
+    {
         this.content = content;
     }
 
-    public long getTimestamp() {
+    public long getTimestamp()
+    {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(long timestamp)
+    {
         this.timestamp = timestamp;
     }
 }

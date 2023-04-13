@@ -39,4 +39,5 @@
     <string name="camera">camera</string>
     <string name="back_button_description">back_button</string>
     <string name="delete">Delete</string>
+    <string name="phonenumber">PhoneNumber</string>
 </resources>

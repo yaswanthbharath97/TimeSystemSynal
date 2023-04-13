@@ -2,28 +2,35 @@ package com.example.chatapplication.viewmodel;
 
 import android.app.Application;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.chatapplication.dao.MessageDao;
+import com.example.chatapplication.database.ContactDatabase;
 import com.example.chatapplication.entity.Message;
 import com.example.chatapplication.repository.MessageRepository;
 
 import java.util.List;
 
-public class MessageViewModel extends AndroidViewModel {
+public class MessageViewModel extends AndroidViewModel
+{
     private final MessageRepository messageRepository;
     private final LiveData<List<Message>> allMessages;
 
-    public MessageViewModel(@NonNull Application application) {
-        super(application);
-        this.messageRepository = new MessageRepository(application);
-        this.allMessages = this.messageRepository.getAllMessages();
-    }
-    public void insert(Message message)
+
+
+    public MessageViewModel(Application application)
     {
-        messageRepository.insert(message);
+        super(application);
+        messageRepository = new MessageRepository(application);
+        allMessages = this.messageRepository.getAllMessages();
+    }
+
+    public LiveData<List<Message>> getMessagesBySenderId(long senderId) {
+        return messageRepository.getMessagesBySenderId(senderId);
+    }
+    public void insert(Message message,long senderId)
+    {
+        messageRepository.insert(message,senderId);
     }
 
     public void delete(Message message)
@@ -31,11 +38,11 @@ public class MessageViewModel extends AndroidViewModel {
        messageRepository.delete(message);
     }
 
-
-    public LiveData<List<Message>> getAllMessages()
+    public LiveData<List<Message>>getAllMessages()
     {
-        return  allMessages;
+        return allMessages;
     }
+
 
 
 }

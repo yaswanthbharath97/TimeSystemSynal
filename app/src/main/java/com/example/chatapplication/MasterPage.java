@@ -71,28 +71,27 @@ public class MasterPage extends AppCompatActivity {
         recyclerView=findViewById(R.id.chatlist);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-
+        long sender_id=getIntent().getIntExtra("sender_id",0);
         MessageViewModel messageViewModel=new ViewModelProvider(this).get(MessageViewModel.class);
-        messageAdapter=new MessageRecyclerView(messageViewModel.getAllMessages());
+        messageAdapter=new MessageRecyclerView(messageViewModel.getMessagesBySenderId(sender_id));
         recyclerView.setAdapter(messageAdapter);
 
-        messageViewModel.getAllMessages().observe(this, new Observer<List<Message>>() {
+        messageViewModel.getMessagesBySenderId(sender_id).observe(this, new Observer<List<Message>>() {
             @Override
             public void onChanged(List<Message> messages) {
                 messageAdapter.setMessage(messages);
                 recyclerView.scrollToPosition(messages.size()-1);
 
-
             }
         });
 
-       imageView.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent intent=new Intent(MasterPage.this,Dashboard.class);
-               startActivity(intent);
-           }
-       });
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MasterPage.this,Dashboard.class);
+                startActivity(intent);
+            }
+        });
 
         recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -134,51 +133,11 @@ public class MasterPage extends AppCompatActivity {
         });
 
 
-        // screen reduces when keyboard appears scrolling
-
-     /*   class SoftKeyboardStateWatcher implements ViewTreeObserver.OnGlobalLayoutListener {
-            private View rootView ;
-            private final int previousHeight = 0;
-            private SoftKeyboardStateListener listener;
-            public SoftKeyboardStateWatcher(View rootView, RecyclerView recyclerView) {
-                this.rootView = rootView;
-                rootView.getViewTreeObserver().addOnGlobalLayoutListener(this);
-            }
-            public void setListener(SoftKeyboardStateListener listener) {
-                this.listener = listener;
-            }
-            @Override
-            public void onGlobalLayout() {
-                Rect r = new Rect();
-                rootView.getWindowVisibleDisplayFrame(r);
-                int screenHeight = rootView.getRootView().getHeight();
-                int keypadHeight = screenHeight - r.bottom;
-                if (keypadHeight > screenHeight * 0.15)
-                {
-                    if (listener != null) {
-                        listener.onSoftKeyboardOpened(keypadHeight);
-                        recyclerView.scrollToPosition(Objects.requireNonNull(recyclerView.getAdapter()).getItemCount()-1);
-                    }
-                }
-                else
-                {
-                    if (listener != null)
-                    {
-                        listener.onSoftKeyboardClosed();
-                    }
-                }
-            }
-            public interface SoftKeyboardStateListener {
-                void onSoftKeyboardOpened(int keyboardHeight);
-                void onSoftKeyboardClosed();
-            }
-        }
-*/
-
         imageButton.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
+
                 if(editText.getText().toString().equals(""))
                 {
                     editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -195,10 +154,9 @@ public class MasterPage extends AppCompatActivity {
                 }
                 else
                 {
-                    Message message = new Message(editText.getText().toString());
-                    message.setSender_id(message.getSender_id());
+                    Message message = new Message(editText.getText().toString(),sender_id);
                     message.setMessage(message.getMessage());
-                    messageViewModel.insert(message);
+                    messageViewModel.insert(message,sender_id);
                     messageAdapter.notifyDataSetChanged();
                     editText.setText("");
                 }
@@ -212,12 +170,14 @@ public class MasterPage extends AppCompatActivity {
 
 
     private void getIncomingIntent() {
+
         Log.d(TAG, "getIncomingIntent:checking for incoming intent");
         if (getIntent().hasExtra("Url") && getIntent().hasExtra("title")) {
             Log.d(TAG, "getIncomingIntent:found incoming intent");
             String image = getIntent().getStringExtra("Url");
             String Title = getIntent().getStringExtra("title");
             setImage(image, Title);
+
         }
     }
 
@@ -233,7 +193,8 @@ public class MasterPage extends AppCompatActivity {
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.masterpage_menu,menu);
         mDeleteMenuItem=menu.findItem(R.id.menu_delete);

@@ -1,12 +1,22 @@
 package com.example.chatapplication.entity;
 
 
+import androidx.lifecycle.LiveData;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "chatMessage_table")
+import java.util.List;
+
+
+@Entity(tableName = "chatMessage_table",
+        foreignKeys = @ForeignKey(entity = Contact.class,
+                parentColumns = "id",
+                childColumns = "sender_id"
+                ),
+        indices = {@Index("sender_id")})
 public class Message {
 
     @PrimaryKey(autoGenerate = true)
@@ -17,40 +27,47 @@ public class Message {
 
 
     public String message;
+    @ColumnInfo(name = "sender_id")
+    public long senderId;
 
-    public long sender_id;
 
 
-
-    public long getSender_id() {
-        return sender_id;
+    public long getSenderId()
+    {
+        return senderId;
     }
 
-    public void setSender_id(long sender_id) {
-        this.sender_id = sender_id;
+    public void setSenderId(LiveData<List<Contact>> senderId)
+    {
+        this.senderId = senderId;
     }
 
+    public Message(String message, long senderId) {
+        this.message = message;
+        this.senderId=senderId;
+        this.timestamp=System.currentTimeMillis();
 
+    }
 
 
     public long getTimestamp()
+
     {
         return timestamp;
     }
 
     public void setTimestamp(long timestamp)
+
     {
         this.timestamp = timestamp;
     }
 
 
-    public Message(String message) {
 
-        this.message = message;
 
-    }
 
     public void setMessage(String message)
+
     {
         this.message = message;
     }
@@ -60,11 +77,13 @@ public class Message {
 
 
     public int getId()
+
     {
         return id;
     }
 
     public String getMessage()
+
     {
         return message;
     }

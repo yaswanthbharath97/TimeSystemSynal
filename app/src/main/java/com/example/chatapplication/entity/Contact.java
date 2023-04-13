@@ -1,8 +1,11 @@
 package com.example.chatapplication.entity;
 
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import java.util.List;
 
 
 @Entity(tableName = "contact_table")
@@ -11,6 +14,24 @@ public class Contact
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    public Contact( String name, String number, String images,int jid) {
+
+        this.name = name;
+        this.number = number;
+        this.images = images;
+        this.jid = jid;
+    }
+
+    public int getJid() {
+        return jid;
+    }
+
+    public void setJid(int jid) {
+        this.jid = jid;
+    }
+
+    private int jid;
+
     private final String name;
 
     private final String number;
@@ -18,15 +39,6 @@ public class Contact
     private final String images;
 
 
-
-
-
-
-    public Contact(String name, String number,String images) {
-        this.name = name;
-        this.number = number;
-        this.images=images;
-    }
 
     public String getImages()
     {
@@ -38,7 +50,7 @@ public class Contact
         this.id = id;
     }
 
-    public int getId()
+    public LiveData<List<Contact>> getId()
     {
         return id;
     }
@@ -52,5 +64,6 @@ public class Contact
     {
         return number;
     }
+
 }
 

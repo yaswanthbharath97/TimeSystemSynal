@@ -3,12 +3,15 @@ package com.example.chatapplication.dao;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
-import androidx.room.Embedded;
+
 import androidx.room.Insert;
+
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Relation;
+
 import androidx.room.Transaction;
+import androidx.room.Update;
+
 
 import com.example.chatapplication.entity.Contact;
 import com.example.chatapplication.entity.Message;
@@ -23,25 +26,18 @@ public interface MessageDao {
     @Query("SELECT * FROM chatMessage_table")
     LiveData<List<Message>> getAll();
 
-
-    //  @Query("SELECT * FROM chatMessage_table WHERE sender_id =:sender_id")
-    // List<Message> getMessagesForUser(int sender_id);
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Message message);
 
-    @Delete
-    void delete(Message message);
-
-    static class MessageWithContact {
-
-        @Embedded
-        public Contact contact;
-
-        @Relation(parentColumn = "id", entityColumn = "sender_id", entity = Message.class)
-        public List<Message> messages;
+    @Update
+    void update(Message message);
 
 
-    }
+    @Query("DELETE FROM chatMessage_table WHERE sender_id = :senderId")
+    void deleteMessagesForContact(long senderId);
 
+    @Query("SELECT * FROM chatMessage_table WHERE sender_id = :sender_Id")
+    LiveData<List<Message>> getMessagesBySenderId(long sender_Id);
 
 }
+

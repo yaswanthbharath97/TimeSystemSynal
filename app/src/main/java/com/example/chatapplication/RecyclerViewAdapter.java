@@ -1,8 +1,10 @@
 package com.example.chatapplication;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,28 +60,28 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.phoneno.setText(contact.getNumber());
         if(!Picasso.get().isLoggingEnabled())
         {
-           Picasso.get().setLoggingEnabled(true);
-           Picasso.get().setIndicatorsEnabled(true);
+            Picasso.get().setLoggingEnabled(true);
+            Picasso.get().setIndicatorsEnabled(true);
         }
 
         Picasso.get()
                 .load(contact.getImages()).placeholder(R.drawable.defaultprofile)
                 .error(R.drawable.defaultprofile).
-                 fit()
+                fit()
                 .into(holder.imageview);
 
-       holder.imageview.setOnClickListener(new View.OnClickListener() {
-
-           @Override
-           public void onClick(View v)
-           {
-               Intent intent = new Intent(context, UserImageView.class);
-               intent.putExtra("Url", contact.getImages());
-               intent.putExtra("title",contact.getName());
-               intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-               context.startActivity(intent);
-           }
-          });
+        holder.imageview.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent((Activity)context, UserImageView.class);
+                intent.putExtra("Url", contact.getImages());
+                intent.putExtra("title",contact.getName());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
 
         holder.layout.setOnClickListener(new View.OnClickListener()
         {
@@ -170,5 +172,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     }
-    
+
 }

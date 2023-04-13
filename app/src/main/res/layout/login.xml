@@ -40,10 +40,9 @@
              android:layout_height="wrap_content"
              android:drawableStart="@drawable/person"
              android:drawablePadding="10dp"
-
-             android:hint="@string/Username"
+             android:hint="@string/phonenumber"
              android:textColorHint="#8a000000"
-             android:inputType="text"
+             android:inputType="phone"
              />
 
         </com.google.android.material.textfield.TextInputLayout>

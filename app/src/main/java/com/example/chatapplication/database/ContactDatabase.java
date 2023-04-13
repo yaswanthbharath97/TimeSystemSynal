@@ -13,8 +13,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.chatapplication.R;
 import com.example.chatapplication.dao.ContactDao;
 import com.example.chatapplication.dao.MessageDao;
+import com.example.chatapplication.dao.UserDao;
 import com.example.chatapplication.entity.Contact;
 import com.example.chatapplication.entity.Message;
+import com.example.chatapplication.entity.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +28,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
-@Database(entities = {Contact.class, Message.class},version =1)
+@Database(entities = {Contact.class, Message.class, User.class},version =1,exportSchema = false)
 public abstract class   ContactDatabase extends RoomDatabase
 {
 
@@ -35,6 +37,7 @@ public abstract class   ContactDatabase extends RoomDatabase
 
     @SuppressLint("StaticFieldLeak")
     private static  Context activity;
+    public abstract UserDao userDao();
 
     public abstract ContactDao contactDao();
 
@@ -67,7 +70,6 @@ public abstract class   ContactDatabase extends RoomDatabase
     private static  class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>
     {
 
-
         private final ContactDao contactDao;
 
         private PopulateDbAsyncTask(@NonNull ContactDatabase contactDatabase)
@@ -76,11 +78,13 @@ public abstract class   ContactDatabase extends RoomDatabase
         }
 
 
+
         @Override
-        protected Void doInBackground(Void... voids) {
-            contactDao.insert(new Contact("Animsh","6854712391","https://picsum.photos/200/300 "));
-            contactDao.insert(new Contact("roy","6854712391","https://source.unsplash.com/user/c_v_r/1900x800"));
-            contactDao.insert(new Contact("Joi","5855684558","https://source.unsplash.com/user/c_v_r/100x100"));
+        protected Void doInBackground(Void... voids)
+        {
+            contactDao.insert(new Contact("Animsh","6854712391","https://picsum.photos/200/300 ",13));
+            contactDao.insert(new Contact("roy","6854712391","https://source.unsplash.com/user/c_v_r/1900x800",14));
+            contactDao.insert(new Contact("Joi","5855684558","https://source.unsplash.com/user/c_v_r/100x100",15));
             fillWithStartingData(activity);
             return null;
         }
@@ -93,15 +97,14 @@ public abstract class   ContactDatabase extends RoomDatabase
         try{
             if(contacts!=null) {
 
-                for (int i = 0; i < contacts.length(); i++) {
-
+                for (int i = 0; i < contacts.length(); i++)
+                {
                     JSONObject contact = contacts.getJSONObject(i);
-
                     String contactName = contact.getString("name");
                     String PhoneNumber = contact.getString("phone");
                     String Images=contact.getString("images");
-                    contactDao.insert(new Contact(contactName, PhoneNumber,Images));
-
+                    int Id= contact.getInt("id");
+                    contactDao.insert(new Contact(contactName, PhoneNumber,Images,Id));
                 }
             }
         } catch (JSONException e) {
@@ -130,13 +133,13 @@ public abstract class   ContactDatabase extends RoomDatabase
             return jsonObject.getJSONArray("contacts");
 
         }
-        catch (IOException |JSONException e) {
+        catch (IOException |JSONException e)
+        {
             e.printStackTrace();
 
         }
 
         return null;
-
     }
 
 }

@@ -59,11 +59,13 @@ public class ChatFragment extends Fragment {
         recyclerView1.setLayoutManager(layoutManager);
         adapter = new RecyclerViewAdapter(context, contacts);
         recyclerView1.setAdapter(adapter);
+
         contactViewModel.getAllContacts().observe(requireActivity(), new Observer<List<Contact>>()
         {
             @Override
 
-            public void onChanged(List<Contact> contacts) {
+            public void onChanged(List<Contact> contacts)
+            {
                 adapter.setContacts(contacts);
             }
 

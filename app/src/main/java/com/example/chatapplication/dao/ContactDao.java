@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.chatapplication.entity.Contact;
 
@@ -15,16 +16,19 @@ import java.util.List;
 public interface ContactDao
 {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Contact contact);
+
+    @Update
+    void update(Contact contact);
 
     @Delete
     void delete(Contact contact);
 
-   // we will call it for showing in recyclerview
-    @Query("SELECT * FROM contact_table ORDER BY name ASC")
-    LiveData<List<Contact>> getAllContact();
+    @Query("SELECT * FROM contact_table")
+    LiveData<List<Contact>> getAllContacts();
 
-
+    @Query("SELECT id FROM contact_table WHERE id = :id")
+    LiveData<List<Contact>> getContactById(long id);
 
 }

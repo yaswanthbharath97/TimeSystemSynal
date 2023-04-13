@@ -9,13 +9,13 @@
     {
       "name": "Aakash Choudhury",
       "phone": "9854988238",
-      "images": "https://picsum.photos/seed/picsum/200/300",
+      "images": "https://picsum.photos/seed/picsum",
       "id": 2
     },
     {
       "name": "Arun Dey",
       "phone": "9810153260",
-      "images": "https://picsum.photos/200/300?grayscale\n",
+      "images": "https://picsum.photos/200/300?grayscale",
       "id": 3
     },
     {
@@ -27,7 +27,7 @@
     {
       "name": "Gaurav Gupta",
       "phone": "7002873284",
-      "images": "https://www.kasandbox.org/programming-images/avatars/aqualine-tree.png\n",
+      "images": "https://www.kasandbox.org/programming-images/avatars/aqualine-tree.png",
       "id": 5
     },{
       "name": "Nate Ebal",
