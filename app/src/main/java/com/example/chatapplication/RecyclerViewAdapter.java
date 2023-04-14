@@ -1,17 +1,17 @@
 package com.example.chatapplication;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -28,18 +28,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private static final String TAG = "RecyclerViewAdapter";
-    private List<Contact> contacts = new ArrayList<Contact>();
+    private final List<Contact> contacts;
     private final Context context;
 
 
 
 
-    public RecyclerViewAdapter( Context context,List<Contact>contact)
+    public RecyclerViewAdapter( Context context,List<Contact>contacts)
     {
         super();
         this.context = context;
-        this.contacts=contact;
+        this.contacts=contacts;
 
     }
 
@@ -58,7 +57,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     {
         Contact contact = contacts.get(position);
         holder.name.setText(contact.getName());
-        holder.phoneno.setText(contact.getNumber());
+        holder.phoneNo.setText(contact.getNumber());
         if(!Picasso.get().isLoggingEnabled())
         {
             Picasso.get().setLoggingEnabled(true);
@@ -76,7 +75,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent((Activity)context, UserImageView.class);
+                Intent intent = new Intent(context, UserImageView.class);
                 intent.putExtra("Url", contact.getImages());
                 intent.putExtra("title",contact.getName());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -86,6 +85,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.layout.setOnClickListener(new View.OnClickListener()
         {
+
             @Override
             public void onClick(View v)
             {
@@ -111,12 +111,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setContacts(List<Contact>newcontacts)
+    public void setContacts(List<Contact>newContacts)
     {
 
-        DiffUtil.DiffResult diffResult=DiffUtil.calculateDiff(new ContactsDiffUtilCallback(contacts, newcontacts));
+        DiffUtil.DiffResult diffResult=DiffUtil.calculateDiff(new ContactsDiffUtilCallback(contacts, newContacts));
         contacts.clear();
-        contacts.addAll(newcontacts);
+        contacts.addAll(newContacts);
         diffResult.dispatchUpdatesTo(this);
 
     }
@@ -156,7 +156,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         CircleImageView imageview;
         TextView name;
-        TextView phoneno;
+        TextView phoneNo;
         RelativeLayout layout;
         ProgressBar progressBar;
 
@@ -166,7 +166,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             imageview = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.list_text);
-            phoneno = itemView.findViewById(R.id.phone1);
+            phoneNo = itemView.findViewById(R.id.phone1);
             layout = itemView.findViewById(R.id.parent_view);
             progressBar=itemView.findViewById(R.id.progress);
 
