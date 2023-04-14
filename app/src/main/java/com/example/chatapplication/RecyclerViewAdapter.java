@@ -40,6 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         super();
         this.context = context;
         this.contacts=contact;
+
     }
 
 
@@ -89,6 +90,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View v)
             {
                 Intent intent=new Intent(context,MasterPage.class);
+                intent.putExtra("contactId",contact.getId());
                 intent.putExtra("Url", contact.getImages());
                 intent.putExtra("title",contact.getName());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

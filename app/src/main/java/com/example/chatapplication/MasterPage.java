@@ -55,6 +55,7 @@ public class MasterPage extends AppCompatActivity {
 
     MessageRecyclerView messageAdapter;
 
+    private long sender_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -71,7 +72,9 @@ public class MasterPage extends AppCompatActivity {
         recyclerView=findViewById(R.id.chatlist);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        long sender_id=getIntent().getIntExtra("sender_id",0);
+
+        int sender=getIntent().getIntExtra("contactId",0);
+        sender_id= (long) sender;
         MessageViewModel messageViewModel=new ViewModelProvider(this).get(MessageViewModel.class);
         messageAdapter=new MessageRecyclerView(messageViewModel.getMessagesBySenderId(sender_id));
         recyclerView.setAdapter(messageAdapter);

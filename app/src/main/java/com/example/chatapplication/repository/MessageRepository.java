@@ -55,10 +55,10 @@ public class MessageRepository {
 
         protected Void doInBackground(Message... messages)
         {
-            LiveData<List<Contact>> contactId = contactDao.getContactById(senderId);
-            if (contactId.getValue() != null)
+            Long contactId = contactDao.getContactById(senderId);
+            if (contactId!= null)
             {
-                messages[0].setSenderId(contactId.getValue().get(0).getId());
+                messages[0].setSenderId(contactId);
                 messageDao.insert(messages[0]);
             }
             return null;

@@ -37,7 +37,7 @@ public class Message {
         return senderId;
     }
 
-    public void setSenderId(LiveData<List<Contact>> senderId)
+    public void setSenderId(long senderId)
     {
         this.senderId = senderId;
     }

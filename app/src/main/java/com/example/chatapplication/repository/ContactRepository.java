@@ -26,7 +26,7 @@ public class   ContactRepository {
         allContacts= contactDao.getAllContacts();
     }
 
-    public LiveData<List<Contact>>  getContactById(long id) {
+    public Long getContactById(long id) {
         return contactDao.getContactById(id);
     }
 

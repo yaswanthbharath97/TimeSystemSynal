@@ -29,6 +29,6 @@ public interface ContactDao
     LiveData<List<Contact>> getAllContacts();
 
     @Query("SELECT id FROM contact_table WHERE id = :id")
-    LiveData<List<Contact>> getContactById(long id);
+    Long getContactById(long id);
 
 }
